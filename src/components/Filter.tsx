@@ -9,7 +9,7 @@ export const Filter = () => {
             <form className="filter" onChange={() => dispatch(toggleActiveOnly())}>
                 <label>
                     <input type="checkbox" name="active" defaultChecked={!!value} />
-                    <span>{!!value ? 'Все' : 'Активные'}</span>
+                    {!!value ? FILTER_LABEL_TEXT_ACTIVE : FILTER_LABEL_TEXT_INACTIVE}
                 </label>
             </form>
         </>
@@ -17,3 +17,6 @@ export const Filter = () => {
 }
 
 export default Filter
+
+export const FILTER_LABEL_TEXT_ACTIVE = 'Все'
+export const FILTER_LABEL_TEXT_INACTIVE = 'Активные'
