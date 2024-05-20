@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "jsx": "react-jsx",
+      "allowJs": true,
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "lib": ["dom", "esnext"],
+      "strict": true,
+      "sourceMap": true,
+      "target": "esnext"
+    },
+    "include": ["src", "spec"],
+    "exclude": ["node_modules", "coverage"]
+  }

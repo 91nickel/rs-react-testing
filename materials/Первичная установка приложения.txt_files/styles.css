@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+html {
+   --m-account-logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='25' viewBox='0 0 64 25' fill='none'%3E%3Cpath d='M14.21 19V16.4H3.55V0.799999H0.95V19H14.21ZM15.8868 12.5C15.8868 16.374 19.0328 19.52 22.9068 19.52C26.7808 19.52 29.9268 16.374 29.9268 12.5C29.9268 8.626 26.7808 5.48 22.9068 5.48C19.0328 5.48 15.8868 8.626 15.8868 12.5ZM18.2268 12.5C18.2268 9.926 20.3328 7.82 22.9068 7.82C25.4808 7.82 27.5868 9.926 27.5868 12.5C27.5868 15.074 25.4808 17.18 22.9068 17.18C20.3328 17.18 18.2268 15.074 18.2268 12.5ZM32.2638 11.72C32.2638 14.762 34.4478 17.31 37.3338 17.856V21.86H31.7438V24.2H46.0438V21.86H39.6738V17.856C42.5338 17.31 44.7438 14.762 44.7438 11.72C44.7438 8.288 41.9358 5.48 38.5038 5.48C35.0718 5.48 32.2638 8.288 32.2638 11.72ZM34.6038 11.72C34.6038 9.562 36.3458 7.82 38.5038 7.82C40.6618 7.82 42.4038 9.562 42.4038 11.72C42.4038 13.878 40.6618 15.62 38.5038 15.62C36.3458 15.62 34.6038 13.878 34.6038 11.72ZM44.3538 7.04C44.3538 7.898 45.0558 8.6 45.9138 8.6C46.7718 8.6 47.4738 7.898 47.4738 7.04C47.4738 6.182 46.7718 5.48 45.9138 5.48C45.0558 5.48 44.3538 6.182 44.3538 7.04ZM49.3009 12.5C49.3009 16.374 52.4469 19.52 56.3209 19.52C60.1949 19.52 63.3409 16.374 63.3409 12.5C63.3409 8.626 60.1949 5.48 56.3209 5.48C52.4469 5.48 49.3009 8.626 49.3009 12.5ZM51.6409 12.5C51.6409 9.926 53.7469 7.82 56.3209 7.82C58.8949 7.82 61.0009 9.926 61.0009 12.5C61.0009 15.074 58.8949 17.18 56.3209 17.18C53.7469 17.18 51.6409 15.074 51.6409 12.5Z' fill='white'/%3E%3C/svg%3E");
+   --m-account-logo-url: "/";
+   --font-family-1: 'Jost', "Lato", Helvetica, Arial, sans-serif;
+   --font-family-2: 'Jost', "Lato", Helvetica, Arial, sans-serif;
+   --color-0: #171717;
+   --color-1: white;
+   --main-color: #8F93FF;
+   --color-3: #656ADF;  /* gray-blue BUTTON */
+   --color-3-1: #696FF4; /* button-hover */
+   --color-3-c: var(--color-3);  /* only-color */
+   --color-4: #FFC259;  /* yellow */
+   --color-5: #8551F5;  /* purple */
+   --color-6: #40AD6C;  /* green/text */
+   --color-7: #cfe7ce;  /* green/bg */
+   --color-7-1: #D0DCCF; /* lite-green  */
+   --color-8: #F06363;  /* red/bg #F06363 */
+   --color-8-1: #FFB2B2; /* lite-red  */
+   --color-9: #BF3939;  /* red/text #B20000 */ 
+   --color-10: #323232; /* gray-1 */
+   --color-11: #CECECE; /* gray-2 */
+   --color-12: #F7F7F7; /* gray-3 */
+   --color-13: #A4C6F1; /* light-blue */
+   --color-14: #171717; /* gray-4 */
+   --color-15: #F3F3F3; /* gray-5 */
+   --color-16: #A09D9D; /* gray-6 */
+   --color-17: #415A80; /* link-default */
+   --default-user-img:  url("https://remake-proxy.ru/themes/images/icons/default-user-img.svg");
+   --document-circle-icon:  url("https://remake-proxy.ru/themes/images/icons/document-circle-icon.svg");
+   --checkmark-circle-icon:  url("https://remake-proxy.ru/themes/images/icons/checkmark-circle-icon.svg");
+   --warning-circle-icon:  url("https://remake-proxy.ru/themes/images/icons/warning-circle-icon.svg");
+   --clock-circle-icon:  url("https://remake-proxy.ru/themes/images/icons/clock-circle-icon.svg");
+   --sandclock-circle-icon:  url("https://remake-proxy.ru/themes/images/icons/sandclock-circle-icon.svg");
+   --cross-circle-icon:  url("https://remake-proxy.ru/themes/images/icons/cross-circle-icon.svg");
+   --sort-desc-icon:  url("https://remake-proxy.ru/themes/images/icons/sort-desc-icon.svg");
+   --sort-asc-icon:  url("https://remake-proxy.ru/themes/images/icons/sort-asc-icon.svg");
+   --mic-icon:  url("https://remake-proxy.ru/themes/images/icons/mic-icon.svg");
+   --paperclip-icon: url("https://remake-proxy.ru/themes/images/icons/paperclip-icon.svg");
+   --smile-icon:  url("https://remake-proxy.ru/themes/images/icons/smile-icon.svg");
+   --paperplane-icon:  url("https://remake-proxy.ru/themes/images/icons/paperplane-icon.svg");
+   --arrow-straight-icon:  url("https://remake-proxy.ru/themes/images/icons/arrow-straight-icon.svg");
+   --checkmark-icon: url("https://remake-proxy.ru/themes/images/icons/checkmark-icon.svg");
+   --cross-icon: url("https://remake-proxy.ru/themes/images/icons/cross-icon.svg");
+   --bell-icon: url("https://remake-proxy.ru/themes/images/icons/bell-icon.svg");
+   --heart-icon: url("https://remake-proxy.ru/themes/images/icons/heart-icon.svg");
+   --m-talks-widget-button: none; /* "none" - off, "block" - on */
+}
+
+
+/* Стандартная кнопка чата */
+.talks-widget-button {
+  display: var(--m-talks-widget-button);
+  background: var(--main-color);
+}
+
+/* Chatium баннер */
+body > .smartbanner {
+  display: none!important;
+} 
+html[data-smartbanner-original-margin-top] {
+  margin-top: 0!important;
+}
+
+/* Сообщение о продлении подписки геткурса */
+.top-notification-wrapper {
+  margin: 0!important;
+  background: var(--color-8-1);
+  position: relative!important;
+}
+.top-notification-wrapper .top-notification-notice {
+  background: var(--color-8-1);
+  color: var(--color-9);
+  width: var(--container-width);
+  margin: 0 auto!important;
+  padding-right: 15px!important;
+  padding-left: 15px!important;
+}
+.top-notification-wrapper .top-notification-notice a {
+  background: var(--color-8-1);
+  color: var(--color-0);
+}
+
+
+html {
+  --container-width: min(1200px, calc(var(--parent-wv, 100vw) - 300px - 20px - 170px));
+}
+html.max-width-1200px {
+  --container-width: calc(var(--parent-wv, 100vw) - 300px - 20px - 30px) !important;
+}
+html.max-width-1024px {
+  --container-width: 100% !important;
+}
+@media (max-width: 1200px){
+  html {
+    --container-width: calc(var(--parent-wv, 100vw) - 300px - 20px - 30px);
+  }
+}
+@media (max-width: 1024px){
+  html {
+    --container-width: 100%;
+  }
+}
+
+
+::-webkit-input-placeholder {
+  color: var(--color-11);
+}
+::-moz-placeholder {
+  color: var(--color-11);
+}
+:-ms-input-placeholder {
+  color: var(--color-11);
+}
+:-moz-placeholder {
+  color: var(--color-11);
+}
+
+
+/* Фикс для переноса фильтров в воронках */
+.metrika-date-filter-wrapper {
+  max-width: var(--container-width);
+}
+
+/* Фикс для блока редактирования в Настройках вида страницы тренингов */
+.global-xdget-editor {
+  margin-bottom: 0!important;
+}
+
+/* Фикс для UserCSS */
+#ucss-code-wrapper {color:black;}
+
+/* Админский блок задач */
+.gc-tasks-block .annotate-block {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    font-size: 12px;
+}
+
+/* Фикс для геткурсовской рекламы */
+#gcAccountUserMenu~.gc-main-content.with-left-menu .common-banner-wrapper {
+    left: 315px!important;
+    transition: left .3s;
+}
+@media (min-width: 769px) {
+  body.compact-menu #gcAccountUserMenu~.gc-main-content.with-left-menu .common-banner-wrapper {
+    left: 105px!important;
+  }
+}
+
+/* Чат */
+.talks-widget-window {
+  width: 450px;
+  box-shadow: -20px 0px 70px 0px rgb(0 0 0 / 10%) !important;
+  padding: 0!important;
+}
+@media (max-width: 450px) {
+  .talks-widget-window {
+    width: 100%;
+  }
+}
+.talks-widget-window, 
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-list-footer  {
+  background: white!important;
+  border: none!important;
+}
+.talks-widget-window .talks-widget-body {
+  margin-top: 0!important;
+}
+.talks-widget-header .btn-close {
+  top: 16px!important;
+  right: 20px!important;
+  width: 28px;
+  height: 28px;
+  background: url("https://remake-proxy.ru/themes/images/icons/big-cross.svg") center center no-repeat;
+  background-size: contain;
+}
+.talks-widget-header .btn-close:before {
+  display: none;
+}
+.talks-widget-window .caption {
+  font-family: var(--font-family-1);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  color: var(--color-1);
+  background: none;
+  text-align: left;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-list-footer {
+  padding-bottom: 0;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-list-footer .btn {
+  background: var(--color-3);
+  border: none;
+  border-radius: 5px;
+  height: 46px;
+  font-family: var(--font-family-1);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: white;
+  width: calc(100% - 40px);
+  max-width: 390px;
+  margin: 20px auto 30px;
+  box-shadow: none!important;
+  outline: none;
+  transition: background-color .2s;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-list-footer .btn:hover {
+  background: var(--color-3-1);
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-list-footer .btn .fa {
+  display: none;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate {
+   padding: 20px!important;
+   border: none;
+   background: var(--color-1);
+   transition: background-color .2s;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate:hover {
+   background: var(--color-12)!important;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-img {
+  width: 50px;
+  height: 50px;
+  background: #cecece;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-img-block {
+  width: 50px;
+  margin-left: 0!important;
+  margin-right: 15px!important;
+  line-height: 50px;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-img-block img {
+  width: 50px;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-img-block img.user-default-profile-image {
+    content: var(--default-user-img);
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-sizing: content-box;
+    padding-top: 10px;
+    width: 100% !important;
+    height: calc(100% - 10px) !important;
+    filter: invert(1) brightness(3);
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-img-block img[src="/public/img/chat.png"] {
+  width: 60%; height: 60%;
+  filter: invert(1) brightness(3);
+  vertical-align: middle;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-data-block {
+  border: none!important;
+  margin-left: 65px;
+  padding-bottom: 0;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-data-block .conversation-title-block {
+  font-family: var(--font-family-2);
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #171717;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-data-block .conversation-text {
+  margin-top: 8px;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-data-block .conversation-title-block .conversation-time {
+  font-family: var(--font-family-2);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: right;
+  color: #171717;
+  margin-right: 0;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block {
+  position: static;	
+}
+.talks-widget-header a {
+    color: inherit;
+    text-decoration: none;
+}
+.talks-widget-header a:hover {
+    text-decoration: underline;
+}
+.talks-widget-window .talks-widget-header {
+  text-align: left!important;
+  border: none!important;
+  background: var(--main-color)!important;
+  padding: 21px 20px!important;
+  height: 60px!important;
+}
+.talks-widget-window .talks-widget-header .btn-back {
+    color: var(--color-1);
+    line-height: 29px;
+    top: 16px;
+    left: 10px;
+}   
+.talks-widget-window .talks-widget-header .btn-back:before {
+    content: "\f0d9";
+    padding: 0 10px;
+}
+.talks-widget-window .talks-widget-header .btn-back:not([style*="display: none"]) ~ .caption {
+  padding-left: 20px;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-data-block .conversation-fresh-comment-count {
+    background: var(--color-3);
+    right: 20px;
+    bottom: 10px!important;
+    color: var(--color-1);
+    border-radius: 3px;
+    padding: 3px 6px!important;
+}
+.talks-widget-window .conversation-widget {
+    position: relative;
+    background: var(--color-1);
+}
+.talks-widget-window .conversation-widget .comments-tree {
+  margin: 0!important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.talks-widget-window .conversation-widget .comment-wrapper .comment .title,
+.talks-widget-window .conversation-widget .comment-wrapper .comment .title * {
+  font-family: var(--font-family-2);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  height: 12px;
+  color: var(--color-0);
+  margin-bottom: 8px;
+}
+
+.talks-widget-window .conversation-widget .comment-wrapper .comment .user-image-wrapper,
+.talks-widget-window .conversation-widget .comment-wrapper .comment .user-profile-image {
+   width: 50px;
+   background: #cecece;
+   border-radius: 50%;
+   position: relative;
+}
+.talks-widget-window .conversation-widget .comment-wrapper .comment .user-profile-image.user-default-profile-image {
+    visibility: hidden;
+}
+.talks-widget-window .conversation-widget .comment-wrapper .comment .user-image-wrapper:before {
+    content:"";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-sizing: content-box;
+    padding-top: 10px;
+    width: 100% !important;
+    height: calc(100% - 10px) !important;
+    background: var(--color-1);
+    mask-image: var(--default-user-img);
+    -webkit-mask-image: var(--default-user-img);
+    mask-size: 70%;
+    -webkit-mask-size: 70%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+    mask-origin: content-box;
+    -webkit-mask-origin: content-box;
+}
+.talks-widget-window .conversation-widget .comment > .text .text-content {
+    border: none!important;
+    border-radius: 6px;
+    font-family: var(--font-family-2);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 135%;
+    color: var(--color-0);
+    padding: 10px 13px 16px 13px;
+}
+.talks-widget-window .conversation-widget .own-user-comment .comment > .text .text-content, 
+.talks-widget-window .conversation-widget .my-comment .comment > .text .text-content {
+   border: none!important;
+   border-radius: 5px!important;
+   color: var(--color-0)!important;
+   font-family: var(--font-family-2);
+   font-style: normal;
+   font-weight: normal;
+   font-size: 14px;
+   line-height: 135%;
+   padding: 10px 13px 16px 13px;
+}
+.talks-widget-window .conversation-widget .own-user-comment .comment > .text .text-content {
+    background: var(--color-12);
+} 
+.talks-widget-window .conversation-widget .comment > .text .text-content,
+.talks-widget-window .conversation-widget .my-comment .comment > .text .text-content {
+    background: linear-gradient(0, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), var(--color-13);
+}
+.talks-widget-window .conversation-widget .comment-wrapper .comment .comment-time {
+  font-family: var(--font-family-2);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  color: #171717;
+  opacity: 0.5;
+  margin-top: 5px;
+}
+.talks-widget-window .comments-tree .level-1 .comment-wrapper {
+  padding: 5px 20px 0 20px;
+  background: none!important;
+}
+.talks-widget-window .conversation-widget .comments-tree > .comments-container {
+  flex: 1;
+  height: auto!important;
+  padding-top: 15px!important;
+  padding-bottom: 0!important;
+}
+.talks-widget-window .conversation-widget .gc-comment-form {
+  position: relative;
+  background: var(--color-12);
+  padding: 20px 0 20px 0 !important;
+  font-family: var(--font-family-2);
+}
+.talks-widget-window .gc-comment-form .textarea-block {
+  display: grid; 
+  grid-template-columns: 40px auto 40px 40px; 
+  grid-template-rows: 88px auto; 
+  gap: 0px 0px;  
+  grid-template-areas: 
+    "emoji textarea attach-file send-btn"
+    ". fileuploader fileuploader ."
+    ". download-answers download-answers ."
+    ". send-as send-as ."
+    ". other other ."; 
+  align-items: end; 
+}
+.talks-widget-window .gc-comment-form .textarea-block > * { 
+  grid-area: other;
+}
+.talks-widget-window .gc-comment-form .emoji-button {
+  top: auto;
+  bottom: 0;
+  left: -28px;
+  right: auto; 
+  width: 24px!important;
+  height: 24px!important;
+  background: var(--color-3);
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-image: var(--smile-icon);
+  -webkit-mask-image: var(--smile-icon);
+}
+.talks-widget-window .gc-comment-form .emoji-button .fa {
+  display: none;
+}
+.talks-widget-window .gc-comment-form .emoji-container { 
+  grid-area: textarea; 
+  align-self: stretch;
+}
+.talks-widget-window .gc-comment-form .attach-file-button-container { 
+  grid-area: attach-file; 
+  top: auto;
+  bottom: 0;
+  left: 50%;
+  right: auto; 
+  transform: translateX(-50%);
+  width: 24px!important;
+  height: 24px!important;
+  margin: 0!important;
+}
+.talks-widget-window .gc-comment-form .attach-file-button-container .uploadifive-button {
+  width: 24px!important;
+  height: 24px!important;
+  background: var(--color-3)!important;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-image: var(--paperclip-icon);
+  -webkit-mask-image: var(--paperclip-icon);
+}
+.talks-widget-window .gc-comment-form .attach-file-button-container .uploadifive-button .glyphicon {
+  display: none;
+} 
+.talks-widget-window .gc-comment-form .btn-send { 
+  grid-area: send-btn; 
+  background: none!important;
+  border: none!important;
+  color: black!important;
+  padding: 0!important;
+  width: 24px!important;
+  height: 24px!important;
+  font-size: 0!important;
+  background: var(--color-3)!important;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-image: var(--paperplane-icon);
+  -webkit-mask-image: var(--paperplane-icon);
+}
+.talks-widget-window .gc-comment-form .textarea-block textarea,
+.talks-widget-window .gc-comment-form .emoji-wysiwyg-editor {
+  background: transparent;
+  padding: 0!important;
+  height: 100%!important;
+  resize: none!important;
+  border: none!important;
+  font-family: var(--font-family-2);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px!important;
+  line-height: 140%;
+  color: #171717!important;
+  outline: none;
+  overflow:auto!important;
+}
+.talks-widget-window .gc-comment-form .file-uploader {
+  grid-area: fileuploader; 
+  margin: 0!important;
+  margin-bottom: 5px!important;
+}
+.talks-widget-window .gc-comment-form .file-uploader + a,
+.talks-widget-window .gc-comment-form .file-uploader + a + div {
+  margin: 0!important;
+  margin-bottom: 5px!important;
+}
+.talks-widget-window .gc-comment-form .file-uploader + a {
+  grid-area: download-answers; 
+}
+.talks-widget-window .gc-comment-form .file-uploader + a + div {
+  grid-area: send-as;
+  font-size: 0;
+  display: flex;
+}
+.talks-widget-window .gc-comment-form .file-uploader + a + div > * {
+  font-size: 12px;
+}
+.talks-widget-window .gc-comment-form .file-uploader + a + div > br {
+  display: none;
+}
+.talks-widget-window .gc-comment-form .file-uploader + a + div label {
+  display: flex;
+}
+.talks-widget-window .gc-comment-form .file-uploader + a + div input {
+  margin-right:5px;
+}
+.talks-widget-window .gc-comment-form .conversation-widget .comment-wrapper .comment .user-image-wrapper {
+   background: #cecece;
+   border-radius: 50%;
+   overflow: hidden;
+   width: 50px; height: 50px;
+}
+.talks-widget-window .gc-comment-form .conversation-widget .comment-wrapper .comment .user-image-wrapper .user-default-profile-image {
+    position: relative;
+    top: 7px;
+    filter: brightness(3);
+}
+.talks-widget-window .comment-form-wrapper .new-comment.active-always .download-csv {
+    color: var(--color-17);
+    font-family: var(--font-family-2);
+}
+.talks-widget-window .gc-comment-form .textarea-block textarea::-webkit-scrollbar,
+.talks-widget-window .gc-comment-form .emoji-wysiwyg-editor::-webkit-scrollbar,
+.talks-widget-window .conversation-widget .comments-container::-webkit-scrollbar,
+.talks-widget-window .talks-widget-body .conversations-list-block .conversations-list::-webkit-scrollbar {
+    width: 6px;
+}
+.talks-widget-window .gc-comment-form .textarea-block textarea::-webkit-scrollbar-track,
+.talks-widget-window .gc-comment-form .emoji-wysiwyg-editor::-webkit-scrollbar-track,
+.talks-widget-window .conversation-widget .comments-container::-webkit-scrollbar-track,
+.talks-widget-window .talks-widget-body .conversations-list-block .conversations-list::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 6px;
+} 
+.talks-widget-window .gc-comment-form .textarea-block textarea::-webkit-scrollbar-thumb,
+.talks-widget-window .gc-comment-form .emoji-wysiwyg-editor::-webkit-scrollbar-thumb,
+.talks-widget-window .conversation-widget .comments-container::-webkit-scrollbar-thumb,
+.talks-widget-window .talks-widget-body .conversations-list-block .conversations-list::-webkit-scrollbar-thumb {
+    background-color: var(--color-11);
+    border-radius: 6px;
+}
+.talks-widget-window .gc-comment-form .textarea-block textarea,
+.talks-widget-window .gc-comment-form .emoji-wysiwyg-editor,
+.talks-widget-window .conversation-widget .comments-container,
+.talks-widget-window .talks-widget-body .conversations-list-block .conversations-list {
+    scrollbar-color: var(--color-11) transparent;
+    scrollbar-width: 6px;
+}

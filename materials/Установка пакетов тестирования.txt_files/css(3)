@@ -1,0 +1,861 @@
+
+
+html body {
+  --body-back: #232323; /* ТЕМНАЯ ТЕМА */
+  --black-main-color: #2B2B2C;
+  --black-border: #393939;
+   --color-0: #8A8A8A; /* ТЕМНАЯ ТЕМА */
+  --main-color: transparent; /* ТЕМНАЯ ТЕМА */
+  --color-1: #EBEBEB;
+  --color-3: #ED7138;
+  --color-3-1: #FD793C;
+  --color-12: #232323;
+--color-9: #E74C3C;
+  --color-10: #8a8a8a;
+  --color-3-c: #ED7138;
+  --color-14: #ddd;
+  --color-17: #ED7138;
+  --color-7: #2B2B2C;
+--color-6: #40AD6C;
+    --m-account-logo: url("/fileservice/file/download/a/177331/sc/120/h/a859179a848aac2c54a15f69d7983b65.svg");
+}
+html {
+background: #232323;
+}
+body{
+ background: var(--main-color);
+}
+ .page-header {
+    border-color: var(--black-border);
+}
+
+ .stream-progress-text {
+  color:var(--color-1);
+}
+.gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .header {
+    background: var(--color-7);
+}
+.talks-widget-window .talks-widget-body .respondent-list .respondent-annotate {
+   background: var(--color-7);
+  border: 1px solid var(--black-border);
+}
+.talks-widget-window .talks-widget-body .respondent-list .respondent-annotate span {
+color: var(--color-1)!important;
+}
+.talks-widget-window .talks-widget-body .respondent-list .respondent-annotate div {
+color: var(--color-0)!important;
+}
+.talks-widget-window .talks-widget-body .respondent-list .respondent-annotate:hover {
+   background: var(--body-back);
+}
+
+html body .stream-table td {
+  border: 1px solid var(--black-border);
+}
+html.page-ready .gc-tasks-block .annotate-block {
+    background: #15202B;
+  border: 1px solid var(--back-border);
+color: var(--color-1);
+}
+.popover, .popover-title {
+  background: var(--body-back);
+  color: var(--color-1);
+ 
+}
+.popover-title {
+   border-bottom-color: var(--black-border);
+}
+.popover.top>.arrow:after {
+  border-top-color: var(--body-back);
+}
+#gcAccountUserMenu .gc-account-leftbar > .inner-wrapper-sticky {
+  border-right: 1px solid var(--black-border);
+}
+#gcAccountUserMenu .gc-account-user-menu > li:not(.menu-item-profile) > a:after {
+filter:invert(1);
+}
+#gcAccountUserMenu .gc-account-user-menu > li > a.selected {
+    background: var(--black-main-color)!important;
+position:relative;
+}
+#gcAccountUserMenu .gc-account-user-menu > li.menu-item-profile > a::after {
+  transition: .3s;
+}
+#gcAccountUserMenu .gc-account-user-menu > li.menu-item-profile > a.selected::after {
+  content: '';
+  display:block!important;
+  height:1px;
+  position:absolute;
+  bottom:-20px;
+  width:calc(100% + 110px);
+  right:-20px;
+  background: var(--black-border);
+  max-width:unset;
+  opacity:1;
+  transition: .3s;
+}
+.user-notifications-page .notification-group, .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .notification-group {
+background-color: var(--body-back)!important;
+    background: var(--body-back);
+
+}
+
+.user-notifications-page .no-notifications-message, .user-notifications-page .content, .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .no-notifications-message, .gc-account-user-submenu-bar-notifications_button_small .content {
+    color: var(--color-1);
+
+}
+.user-notifications-page .date, .user-notifications-page .mark-viewed, .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .notification-group .date, .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .notification-group .mark-viewed {
+    color: var(--color-0);
+}
+html body .stream-table .stream-title, body.isOneTrainingPage .header-box .stream-info .si_h {
+    color: var(--color-1);
+}
+
+html body .stream-table .stream-description {
+    opacity: 1;
+}
+.talks-widget-window .conversation-widget .comment-wrapper .comment .comment-time {
+ color: var(--color-0);
+}
+.talks-widget-window, .talks-widget-window .talks-widget-body .conversations-list-block .conversation-list-footer {
+    background: var(--black-main-color)!important;
+    border: 1px solid var(--black-border)!important;
+}
+html .talks-widget-header .btn-close, html .talks-widget-window .talks-widget-header .btn-back {
+filter: invert(0.4);
+}
+.talks-widget-window .conversation-widget .gc-comment-form {
+border-top: 1px solid var(--black-border);
+}
+.stream-progress-bg {
+  background: var(--color-1)!important;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate:nth-child(1) {
+ 
+  border-top: 1px solid var(--black-border);
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate:nth-child(1):hover {
+ 
+  border-top: 1px solid var(--black-main-color);
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate {
+    background: var(--black-main-color)!important;
+  border-bottom: 1px solid var(--black-border);
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate:hover {
+    background: var(--black-main-color)!important;
+
+  border-bottom: 1px solid var(--black-main-color);
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-data-block .conversation-title-block {
+ 
+    color: var(--color-1);
+}
+.talks-widget-window .conversation-widget {
+background: var(--body-back);
+}
+.talks-widget-window .conversation-widget .comment > .text .text-content, .talks-widget-window .conversation-widget .my-comment .comment > .text .text-content {
+    background: var(--black-main-color);
+}
+.talks-widget-window .conversation-widget .own-user-comment .comment > .text .text-content, .talks-widget-window .conversation-widget .my-comment .comment > .text .text-content {
+    color: var(--color-1)!important;
+
+}
+.conversation-widget .own-user-comment .comment > .text .text-content a, .conversation-widget .my-comment .comment > .text .text-content a, .conversation-text a {
+    color: #ED7138;
+  font-family:inherit;
+}
+.conversation-widget .own-user-comment .comment > .text, .conversation-widget .my-comment .comment > .text,.talks-widget-window .gc-comment-form .textarea-block textarea, .talks-widget-window .gc-comment-form .emoji-wysiwyg-editor {
+  color: var(--color-1)!important;
+}
+
+.comments-tree, .comments-tree a {
+color: var(--color-3);
+}
+.user-answer .title a span {
+    color: var(--color-1) !important;
+
+}
+html #gcAccountUserMenu {
+  
+  --m-bg-color: #232323;
+  --m-item-font-color: #ECECEC;
+  --m-item-color: transparent;
+  --m-item-active: rgba(255,255,255,0.9);
+  --m-item-hover-color: #2B2B2C;
+  --m-item-icon-color: #757575;
+  --m-default-avatar-color: #cecece;
+  --m-notify-color: #BF3939;
+  --m-custom-btn-color: var(--color-3);
+  --m-custom-btn-color-hover: var(--color-3-1);
+
+}
+html body.isTrainingsPage .gc-main-content, html body.isOneTrainingPage .gc-main-content, html body.isLessonPage .gc-main-content, html body.isMyPurchasesPage .gc-main-content, html body.isNotificationsPage .gc-main-content, html body.isNotificationsAllPage .gc-main-content, html body.isProfilePage .gc-main-content, html body.isPasswordPage .gc-main-content, html body.isChatiumPage .gc-main-content, html body.isProfileFrame .gc-main-content, html body.isPasswordFrame .gc-main-content, html body.isChatiumFrame .gc-main-content, html body.isSchedulePage .gc-main-content, html body.isConversationPage .gc-main-content, html body.isMyAccountsPage .gc-main-content, html body.isMyAnswersPage .gc-main-content, html body.isOpenProfilePage .gc-main-content, html body.isPaymentsPage .gc-main-content {
+    background: var(--body-back)!important;
+
+}
+.isOneTrainingPage.dark-theme h1 {
+    color: var(--color-1);
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > span {
+color: var(--color-0);
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > .alrt-btn {
+    background: #434242;
+color: var(--color-0);
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > .tooltip .tooltip-arrow{
+  border:none!important;
+}
+.header-box, .xdget-trainingList, .gc-account-leftbar .toggle-link {
+    --main-color: #192734;
+    --color-3: #6089B5;
+}
+.header-box, .chatium-header-box {
+   border-bottom: 1px solid var(--black-border);
+}
+
+body.isOneTrainingPage .header-box .stream-info .si_prt:before {
+filter:invert(1);
+}
+.isOneTrainingPage h1 {
+  color: var(--color-0);
+}
+.lesson-list li .title {
+    color: var(--color-1) !important;
+}
+html .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .mark-viewed-all, html .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .header a {
+    color: var(--color-1);
+}
+html body .lesson-list li a:hover .title, html body .lesson-list li a:hover .description {
+    color: var(--color-1) !important;
+}
+.header-box .page-header .clearfix .gc-tags > span, .chatium-header-box .page-header .clearfix .gc-tags > span {
+    color: var(--color-1);
+  border-bottom:1px dashed var(--color-1);
+  border-radius:0;
+}
+body .page-header .breadcrumb a, body .header-box .breadcrumb a, body .header-box .breadcrumbs a, body .chatium-header-box .breadcrumbs a, body .chatium-head-block .breadcrumb a {
+    color: var(--color-10) !important;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .track {
+    background: #313131;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point.available:before {
+    background: #313131;
+  border-color: #313131;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point.completed:before {
+    border-color: var(--color-3);
+    background-color: var(--color-3);
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point:before {
+
+    -moz-box-shadow: 0 0 0 2px var(--body-back);
+    -webkit-box-shadow: 0 0 0 2px var(--body-back);
+    box-shadow: 0 0 0 2px var(--body-back);
+  
+}
+body .header-box .breadcrumb a:hover, body .header-box .breadcrumbs a:hover, body .chatium-header-box .breadcrumbs a:hover {
+    border-bottom: 1px solid var(--color-10);
+}
+.lesson-list li:not(.divider) {
+    border: 1px solid var(--black-border)!important;
+transition:.3s;
+}
+.lesson-list li:not(.divider):hover {
+    border: 1px solid var(--color-0)!important;
+  
+
+}
+.isLessonPage .f-header p, .isLessonPage .f-text p, .isLessonPage .f-text, .isLessonPage .f-text li, summary:before, .addfield .empty-value {
+  color: var(--color-1);
+}
+.isLessonPage.dark-theme .header-box, .isLessonPage.dark-theme  .xdget-trainingList, .isLessonPage.dark-theme  .gc-account-leftbar .toggle-link {
+    --main-color: #1f1f1f!important;
+    --color-3: #6089B5;
+}
+.isLessonPage details a {
+  color: var(--color-17);
+}
+.dark-theme summary:before {
+filter: invert(1);
+}
+.text-center.pt-1.text-default.fsz-14px {
+  position:relative;
+  color: transparent;
+  margin:auto;
+  width: 380px;
+}
+.text-center.pt-1.text-default.fsz-14px::after {
+  content: 'Если хочешь улучшить результат, пройди тест еще раз';
+  color: var(--color-0);
+  left:0;
+  position:absolute;
+  
+}
+@media (max-width: 500px) {
+  .text-center.pt-1.text-default.fsz-14px {
+  width: 300px;
+}
+}
+
+.lesson-mission-wrapper .btn-save-draft, .lesson-mission-wrapper .btn-save-draft:active, .lesson-mission-wrapper .btn-save-draft:focus, .lesson-mission-wrapper .btn-save-draft[disabled], .comment-cancel-edit-link {
+    background: none;
+    border: 2px solid var(--black-border);
+ 
+}
+.dark-theme .hljs {
+    color: #abb2bf;
+    background: #282c34;
+}
+.dark-theme .code-hightlight {
+    border: 1px solid #ccc;
+}
+.dark-theme .hljs-bullet, .dark-theme .hljs-link,.dark-theme .hljs-meta,.dark-theme .hljs-selector-id, .dark-theme .hljs-symbol, .dark-theme .hljs-title {
+    color: #61aeee;
+}
+.dark-theme .hljs-doctag,.dark-theme  .hljs-formula,.dark-theme  .hljs-keyword {
+    color: #c678dd;
+}
+.dark-theme .hljs-deletion,.dark-theme  .hljs-name,.dark-theme  .hljs-section,.dark-theme  .hljs-selector-tag,.dark-theme  .hljs-subst {
+    color: #e06c75;
+}
+.dark-theme .hljs-attr,.dark-theme  .hljs-number,.dark-theme  .hljs-selector-attr,.dark-theme  .hljs-selector-class,.dark-theme  .hljs-selector-pseudo,.dark-theme  .hljs-template-variable,.dark-theme  .hljs-type,.dark-theme .hljs-variable {
+    color: #d19a66;
+}
+.dark-theme .hljs-addition,.dark-theme .hljs-attribute, .dark-theme .hljs-meta .hljs-string, .dark-theme .hljs-regexp, .dark-theme .hljs-string {
+    color: #98c379;
+}
+
+
+
+body.dark-theme.isLessonPage .lesson-mission-wrapper .answer-form .username {
+  color:var(--color-1);
+}
+body.dark-theme.isLessonPage .lesson-mission-wrapper .answer-form input[type="text"].type-string {
+color:var(--color-1);
+}
+body.dark-theme.isLessonPage .lesson-mission-wrapper p {
+color:var(--color-1);
+}
+body.dark-theme.isLessonPage .key-value-table td {
+color: var(--color-1);
+    border-bottom: 1px solid var(--black-border);
+}
+body.dark-theme.isLessonPage .key-value-table tr:last-child td {
+    border-bottom: 0px;
+}
+body.dark-theme .user-notifications-page .notification-group {
+    border: 1px solid var(--black-border)!important;
+
+}
+
+body.dark-theme .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small::-webkit-scrollbar-thumb {
+    background-color: var(--color-0);
+    border-radius: 6px;
+}
+.lesson-list a {
+  background: var(--black-main-color)!important;
+}
+.lesson-list a:hover {
+  background: #313131!important;
+}
+html body .lesson-list li.user-state-has_mission .state-icon-block:before {
+    color: var(--color-0);
+}
+html body .lesson-list li.user-state-has_mission .state-icon-block:after {
+    background: var(--color-0);
+}
+body .breadcrumb > li + li:before, body .header-box .breadcrumb > li + li:before, body .header-box .breadcrumbs > a + a:before, body .chatium-header-box .breadcrumbs > .html-content a + a:before, body .chatium-head-block .breadcrumb a + a:before {
+    color: var(--color-10) !important;
+}
+body .page-header .breadcrumb li:last-child, body .chatium-head-block .breadcrumb li:last-child {
+    color: var(--color-10);
+    opacity: 0.7;
+}
+.dark-theme .block-set, .dark-theme .block-set p,.dark-theme .block-set .f-text {
+    color: var(--color-1);
+}
+.dark-theme .custom-field .field-description-block {
+  color: var(--color-1);
+}
+.isLessonPage .block-box, .isLessonPage .zadanie {
+    border-color: #EAA623!important;
+}
+.isLessonPage .user-answer  a {
+  color: var(--color-17);
+}
+.user-answer .addfield {
+    background: var(--black-main-color);
+
+    color: var(--color-0);
+    padding: 15px 25px!important;
+    margin-top: 15px!important;
+}
+.answer-content .b-like-and-subscribe-notifications {
+
+    opacity: 0.8;
+}
+.talks-widget-window .talks-widget-body .conversations-list-block .conversation-annotate .conversation-data-block .conversation-title-block .conversation-time {
+    color: var(--color-10);
+}
+
+body .header-box .lesson-navigation td:first-child a:before, body .header-box .lesson-navigation td:last-child a:after {
+    filter: invert(0);
+}
+
+.lt-lesson-feedback-block .btn-primary, .lt-form .uploadifive-button, .lesson-mission-wrapper .addfield .uploadifive-button, .lesson-mission-wrapper .answer-textarea-container .uploadifive-button, .lesson-mission-wrapper .btn-send-answer, .lesson-mission-wrapper .btn-save-draft, .new-comment .btn-send {
+
+    color: var(--color-1);
+}
+.testing-widget .btn-send-variant:hover {
+border: 1px solid #313131!important;  
+}
+.testing-widget .btn-send-variant:not(.btn-send-all-variants) {border: 1px solid var(--black-border)!important;}
+.testing-widget .btn-send-variant.btn-success, .testing-widget .btn-mark-variant.btn-success, .testing-widget .btn-mark-variant.btn-success[disabled], .testing-widget .btn-mark-variant.btn-success[disabled]:hover {
+    background: initial!important;
+  border: 1px solid var(--color-6)!important;
+}
+.testing-widget .btn-send-variant.btn-success:before {
+    border: 2px solid var(--color-6);
+    background: transparent;
+
+}
+.testing-widget .btn-send-variant.btn-danger {
+    border: 2px solid var(--color-9)!important;
+ background: initial!important;
+}
+.testing-widget .btn-send-variant.btn-danger:before {
+    border: 2px solid var(--color-9);
+    background: transparent;
+
+}
+.fsz-14px {padding: 20px 0;text-align:center!important;}
+.question-number, .question-title-big, .stat-title,.stat-str,.testing-widget .btn-send-variant:not(.btn-send-all-variants), .testing-widget .btn-mark-variant[disabled], .testing-widget .btn-mark-variant[disabled]:hover, .testing-widget .btn-mark-variant {
+  color: var(--color-1)!important;
+  
+}
+body.isLessonPage .testing-results .result-row {
+      background: transparent;
+    border: 1px solid var(--color-9);
+}
+body.isLessonPage .testing-results .result-row:before {
+color:var(--color-9);
+}
+body.isLessonPage .testing-results .result-row.is_right {
+  background: transparent;
+    border: 1px solid var(--color-6);
+}
+body.isLessonPage .testing-results .result-row.is_right:before {
+    color: var(--color-6);
+}
+.isLessonPage .block-box, .isLessonPage .lt-normal-form, .isLessonPage .zadanie {
+    background-color: var(--body-back)!important;
+}
+body.isLessonPage .lt-normal-form input.f-input  {
+border: 1px solid var(--black-border)!important;  
+}
+body.isLessonPage .user-answer .answer-text, body.isLessonPage .user-answer .comment .text-content {
+color: var(--color-1);
+}
+.isLessonPage .block-box textarea{
+  background-color: var(--body-back)!important;
+}
+.isLessonPage .select2-container a {
+background-color: var(--black-main-color)!important;
+}
+.isLessonPage .select2-search {
+    display: none;
+}
+.isLessonPage .task-header p {
+      background: transparent!important;
+    color: var(--color-6)!important;
+    border: solid 2px var(--color-6)!important;
+}
+.select2-results::-webkit-scrollbar { width: 4px; border-radius: 16px;}
+.select2-results::-webkit-scrollbar-button {  background-color: transparent; height: 20px;}
+.select2-results::-webkit-scrollbar-track {  background: var(--color-0);}
+.select2-results::-webkit-scrollbar-track-piece { background-color: var(--body-back);}
+.select2-results::-webkit-scrollbar-thumb { background-color: var(--color-0); border-radius: 16px;}
+.select2-results::-webkit-scrollbar-corner { background-color: var(--color-0); border-radius: 16px;}
+.select2-results::-webkit-resizer { background-color: var(--color-0);}
+.isLessonPage .select2-drop {
+background-color: var(--black-main-color);
+color: var(--color-1);
+  border: 1px solid var(--border-black);
+}
+.isLessonPage .custom-field.type-select .select2-choice {
+color: var(--color-1);
+}
+body.isLessonPage .select2-results .select2-highlighted {
+    background: #313131;
+
+}
+body.isLessonPage .form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.isLessonPage .user-answer .addfield label, .isLessonPage textarea {
+  color: var(--color-1);
+}
+.isLessonPage textarea::placeholder {
+ color: var(--color-0);
+}
+.isLessonPage .xdget-loginUserForm a, .isLessonPage .btn-link {
+    border-bottom: 1px solid var(--black-border) !important;
+}
+.isLessonPage 
+.answer-form .addfield-type-goal-form {
+  border: 1px solid var(--black-border) !important;
+}
+.isLessonPage label {
+   color: var(--color-1);
+}
+.user-answer {
+
+    border-top: 1px solid var(--black-main-color);
+
+}
+details {
+    background: var(--black-main-color);
+
+}
+summary {
+    border-bottom: 1px solid var(--border-black);
+}
+/*Мои покупки*/
+body.isMyPurchasesPage {
+    --color-17: #ED7138;
+}
+body.isMyPurchasesPage table td a {
+    color: var(--color-17)!important;
+}
+body .page-header h1, body .chatium-head-block h1, body .lesson-header-block .lesson-title-value, body .lesson-header-block .lesson-description-value, body .header-box .lesson-navigation td a, h3, body.isMyPurchasesPage .table.table-notitle tr td, body.isMyPurchasesPage .table>tbody>tr>td {
+    color: var(--color-1) !important;
+}
+body.isLessonPage.dark-theme .header-box .lesson-navigation td a {
+border: 1px solid var(--black-border);
+opacity:1;
+}
+body.isLessonPage.dark-theme .header-box .lesson-navigation td a:hover {
+border: 1px solid var(--color-0);
+}
+.balance-block .balance-container .bonus-balance {
+    color: var(--color-0);
+}
+/*Стр уведомлений*/
+.my-notification-block:before {
+    color: var(--color-1);
+}
+.my-notification-block {
+color: var(--color-0);
+}
+.my-notification-block a {
+  color: var(--color-17);
+}
+
+.disabled-row {
+    background: transparent;
+}
+
+.isNotificationsPage table td {
+ color: var(--color-0); 
+}
+.isNotificationsPage table td input[type="checkbox"]:checked + .checkbox-icon {
+  background: var(--color-17) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9' fill='none'%3E%3Cpath d='M10.7829 1.56445L4.9136 7.43402L1.3916 3.91186' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat!important;
+}
+body.isNotificationsPage .my-notification-block .btn {
+color: #0088CC; 
+      background: transparent!important;
+}
+body.dark-theme table th {
+    color: var(--color-1);
+} 
+/*loginpage*/
+.xdget-loginUserForm .register-form, .xdget-loginUserForm .login-form, .xdget-loginUserForm .logined-form, .xdget-loginUserForm .remind-block, .xdget-loginUserForm .login-block {
+    background: var(--black-main-color);
+border: 1px solid #38444d66;
+}
+.btn-primary {
+    color: var(--color-1);
+}
+.xdget-loginUserForm a, .btn-link {
+    border-bottom: 1px solid var(--color-17) !important;
+}
+.xdget-contactForm .before-send-form {
+    background: var(--black-main-color);
+  border: 1px solid #38444d66;
+}
+.btn-success {
+    color: var(--color-1);
+
+}
+/*shedule*/ 
+ .isSchedulePage .table>thead>tr>th,.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+border-bottom: 1px solid var(--black-border);
+}
+.isSchedulePage .table span {
+color: var(--color-1);
+}
+.isSchedulePage .table a {
+color: var(--color-17);
+}
+.isSchedulePage i {
+  color: var(--color-1)!important;
+}
+table th {
+color: var(--color-0);
+}
+/*Answers*/ 
+.isMyAnswersPage h3,.filter-block:before  {
+  color: var(--color-0);
+}
+.isMyAnswersPage .answer-content div {
+  color: var(--color-0);
+}
+.isMyAnswersPage .answers-list {
+  color: var(--color-1);
+}
+.isMyAnswersPage .user-answer .answer-text, .isMyAnswersPage .user-answer .comment .text-content {
+  color: var(--color-1);
+}
+.isMyAnswersPage .text-muted, .isMyAnswersPage .show-lesson-link {
+  color: var(--color-17);
+}
+.isMyAnswersPage .answer-content div:nth-last-child(1), .isMyAnswersPage .badge {
+  color: var(--color-1);
+}
+.isMyAnswersPage .container a {
+  color:var(--color-17)!important;
+}
+.isMyAnswersPage .selected a {
+  color:var(--color-1)!important;
+}
+.isMyAnswersPage .key-value-table td {
+    border-bottom: 1px solid var(--black-border);
+}
+.isMyAnswersPage textarea::placeholder {
+  color: var(--color-0);
+}
+.isMyAnswersPage textarea {
+  color: var(--color-1);
+}
+.isMyAnswersPage ul.yiiPager .selected a {
+    background: var(--color-17);
+    color: #FFFFFF;
+ color:var(--color-1)!important;
+}
+.isMyAnswersPage .badge {
+  background: var(--color-3);
+}
+
+.isMyAnswersPage .lt-lesson-feedback-block textarea, .lesson-mission-wrapper .answer-form textarea, .lesson-mission-wrapper .answer-form input[type="text"], .simple-answer .new-comment-textarea, .emoji-wysiwyg-editor,  .comment-form-wrapper .new-comment-textarea, .new-comment-textarea.edited-comment-text, .filter-block .filter-list > li > a  {
+    background: var(--black-main-color);
+}
+.balance-block .balance-container {
+    border: 2px solid var(--black-border);
+background: var(--black-main-color);
+}
+
+/*Профиль*/
+.isProfileFrame .select-btns input:checked + .btn {
+    background: var(--color-3);
+}
+
+.emailField .fa-chevron-circle-down {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 27px;
+    height: 27px;
+    font-size: 0;
+    background: var(--color-6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9' fill='none'%3E%3Cpath d='M10.7829 1.56445L4.9136 7.43402L1.3916 3.91186' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.isProfileFrame .panel {
+  background-color: transparent;
+}
+.isProfileFrame input, .isProfileFrame select, .isProfileFrame textarea {
+  color: var(--color-1);
+  background-color: var(--black-main-color);
+}
+.isProfileFrame input::placeholder, .isProfileFrame select::placeholder, .isProfileFrame textarea::placeholder {
+color: var(--color-0);
+}
+.isProfileFrame.dark-theme .page-menu li a {
+color: var(--color-1)!important;
+}
+.isProfileFrame.dark-theme .page-menu li.active a {
+    opacity: 1;
+color: var(--color-0)!important;
+}
+.isProfileFrame.dark-theme .mailingCategories > label > div {
+background-color: var(--color-17)!important;
+
+}
+/*OpenProfile*/
+
+.isOpenProfilePage, .isOpenProfilePage label {
+  color:var(--color-0)!important;
+  
+}
+.isOpenProfilePage h1, .isOpenProfilePage h2, .isOpenProfilePage h3, .isOpenProfilePage h4, .isOpenProfilePage h5, .isOpenProfilePage h6 {
+  color:var(--color-1)!important;
+}
+.isOpenProfilePage .label-warning {
+  background-color: var(--color-17);
+}
+.isPasswordFrame input {
+  color: var(--color-0);
+}
+input[type="password"] {
+    background: var(--black-main-color);
+}
+.dark-theme .user-notifications .notification-group .date {
+    color: var(--color-0);
+}
+.dark-theme .gc-account-leftbar .toggle-link > .m-burger-btn {
+    background: var(--color-1);
+}
+@media (max-width: 768px) {
+.dark-theme .gc-account-leftbar .toggle-link > .m-notify {
+filter: invert(0) brightness(0.85);
+}
+}
+.isPasswordPage .page-header:before, .isProfilePage .page-header:before{
+    background-size: auto 20px;
+}
+ .isTrainingsPage > .gc-main-content > .page-full-block > .main-page-block:before {
+background-size: auto 20px;
+}
+.page-header:before {
+background-size: auto 20px!important;
+  
+}
+.dark-theme .talks-widget-window .conversation-widget .comment > .text .text-content {
+color: var(--color-1);
+}
+
+
+/*webinar*/
+
+
+body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .breadcrumb *, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .webinar-title *, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .controls-buttons > .btn-group > .btn, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .controls-buttons > .btn, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .two-panel .webinar-menu-view button, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .broadcast-microphone-popover.off, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .broadcast-camera-popover.off, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .broadcast-screen-popover.off, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .webinar-chat-toggle, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .webinar-chat-toggle .fa, body.dark-theme.isWebinarPage.yt-webinar-page .webinar-admin-page .moderation-link, body.dark-theme.isWebinarPage.yt-webinar-page .chat-header, body.dark-theme.isWebinarPage.yt-webinar-page #webinar-content-block > .lite-page.block-set > body.dark-theme .o-lt-onecolumn-common:first-child .f-header, .dark-theme.isWebinarPage .comments-tree, .dark-theme.isWebinarPage .comments-tree a {
+    color: var(--color-1)!important;
+}
+.dark-theme  .webinar-admin-page .webinar-link-user-copy input {
+    height: 26px!important;
+    border-radius: var(--wb-border-radius)!important;
+    color: var(--wb-color-4)!important;
+    background: var(--color-12)!important;
+    border: none!important;
+    box-shadow: none!important;
+}
+.dark-theme.isWebinarPage .webinar-login {
+  background: var(--black-main-color);
+}
+.dark-theme.isWebinarPage .webinar-login button {
+background-color: var(--color-3);
+  border:none;
+}
+
+html body.isWebinarPage.dark-theme.yt-webinar-page .textarea-block .new-comment-input, body.isWebinarPage.dark-theme.yt-webinar-page:not(.mobile) .comments-tree, body.dark-theme.isWebinarPage.yt-webinar-page.mobile .comments-main-container {
+    background: var(--black-main-color)!important;
+  color: var(--color-1)!important;
+}
+body.isWebinarPage.dark-theme.yt-webinar-page .comment-wrapper .text {
+    color: var(--wb-color-1);
+}
+
+body.isWebinarPage.dark-theme.yt-webinar-page .new-comment-input::placeholder, body.isWebinarPage.dark-theme.yt-webinar-page:not(.mobile) .comments-tree::placeholder, body.dark-theme.isWebinarPage.yt-webinar-page.mobile .comments-main-container::placeholder {
+  color: var(--color-0)!important;
+}
+body.isWebinarPage.dark-theme.yt-webinar-page .webinar-admin-page .comments-tree .comment .title span:nth-child(1) {
+   color: var(--color-0)!important;
+}
+body.isWebinarPage.dark-theme .comments-tree .comment .title a[style="color: red;"] {
+    color: #696969 !important;
+}
+.dark-theme .common-banner {
+  background:none!important;
+}
+
+.dark-theme .common-banner .banner-link {
+  color: var(--color-1)!important;
+}
+.dark-theme .submenu-arrow {
+filter: invert(0.9);
+}
+@media (max-width: 768px) {
+.dark-theme .gc-account-leftbar .toggle-link > .m-account-logo {
+  background-size: auto 16px!important;
+}
+}
+.dark-theme .lesson-theme {
+color: var(--color-1);
+}
+.dark-theme .wtf-banner {
+border: 1px solid var(--black-border);
+background-color:transparent!important;
+}
+.dark-theme .wtf-banner b {
+color: var(--color-1)!important;
+}
+.dark-theme b[style="color:#ED7138"] {
+color: var(--color-3)!important;
+}
+.isFilesStoragePage.dark-theme td {
+  color: var(--color-1);
+}
+.isFilesStoragePage.dark-theme tr:not(.filters):hover {
+  color: var(--color-1);
+  background-color: var(--body-back)!important;
+}
+.isFilesStoragePage.dark-theme .standard-page-content div {
+  color: var(--color-1);
+}
+.isFilesStoragePage.dark-theme h1 {
+  color: var(--color-1);
+}
+.isFilesStoragePage.dark-theme a {
+  color: var(--color-3);
+}
+.isFilesStoragePage.dark-theme input {
+    background-color: var(--body-back)!important;
+  color: var(--color-1);
+  border: 1px solid var(--border-color);
+}
+.isFilesStoragePage.dark-theme .standard-page-menu li.active {
+   background-color: var(--black-main-color)!important;
+ 
+}
+.isFilesStoragePage.dark-theme .standard-page-menu li.active a {
+   color: var(--color-1);
+}
+.isFilesStoragePage.dark-theme .panel-footer {
+background-color: var(--body-back)!important;
+}
+.isFilesStoragePage.dark-theme .select2-drop-mask {
+background-color: var(--body-back)!important;
+}
+.isFilesStoragePage.dark-theme .select2-drop, .isFilesStoragePage.dark-theme .select2-container .select2-choice, .isFilesStoragePage.dark-theme .select2-dropdown-open .select2-choice{
+background-color: var(--body-back)!important;
+    border: 1px solid var(--border-color);
+  background-image: none!important;
+  color: var(--color-1);
+}
+.isFilesStoragePage.dark-theme .select2-input {
+  color: var(--body-back)!important;
+}
+.isFilesStoragePage.dark-theme .modal-content {
+background-color: var(--body-back)!important;
+}
+.isFilesStoragePage.dark-theme .table>tbody>tr.danger>td,.isFilesStoragePage.dark-theme .table>tbody>tr.danger>th, .isFilesStoragePage.dark-theme .table>tbody>tr>td.danger, .isFilesStoragePage.dark-theme .table>tbody>tr>th.danger, .isFilesStoragePage.dark-theme .table>tfoot>tr.danger>td, .isFilesStoragePage.dark-theme .table>tfoot>tr.danger>th, .isFilesStoragePage.dark-theme .table>tfoot>tr>td.danger, .isFilesStoragePage.dark-theme .table>tfoot>tr>th.danger, .isFilesStoragePage.dark-theme .table>thead>tr.danger>td, .isFilesStoragePage.dark-theme .table>thead>tr.danger>th, .isFilesStoragePage.dark-theme .table>thead>tr>td.danger, .isFilesStoragePage.dark-theme .table>thead>tr>th.danger {
+    background-color: #660000;
+}
+.isFilesStoragePage.dark-theme .panel {
+ background-color: var(--black-main-color)!important;
+
+}

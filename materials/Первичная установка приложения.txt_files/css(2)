@@ -1,0 +1,1359 @@
+
+
+/* Пример подключения своих шрифтов через Google Fonts */
+@font-face {
+    font-family: 'Golos';
+    src: local('Golos'), 
+         local('GolosText-Regular'), 
+         local('Golos Text Regular'), 
+         url('/fileservice/file/download/a/447724/sc/140/h/ab7ef30c85454b8e2521b537b30972ae.woff2') format('woff2'), 
+         url('/fileservice/file/download/a/447724/sc/151/h/bf7ee3ba54363ef19f1023c9268b9830.woff') format('woff'), 
+         url('/fileservice/file/download/a/447724/sc/508/h/0d373a9cdedbfbccd1ba0225c4d3de7b.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Golos';
+    src: local('Golos DemiBold'), 
+         local('Golos Text DemiBold'), 
+         local('GolosText-DemiBold'), 
+         url('/fileservice/file/download/a/515466/sc/119/h/a36303097bd5b2fc43b11bc35f1046e1.woff2') format('woff2'), 
+         url('/fileservice/file/download/a/515466/sc/224/h/4b894efe8374868f1dda74fc1347ff73.woff') format('woff'), 
+         url('/fileservice/file/download/a/515466/sc/294/h/1b4dd49dbce97e4b7ee47945eb31d202.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Основные настройки */
+html body {
+
+   /* Лого и ссылка лого */
+   --m-account-logo: url("/fileservice/file/download/a/177331/sc/154/h/ed96e5d8dd12c6346124a46584f154ec.svg");
+   --m-account-logo-url: "/";
+
+   /* Стандартная кнопка чата */
+   --m-talks-widget-button: none;  /* "none" - не показывать, "block" - показывать */
+
+   /* Шрифты */
+   --font-family-1: 'Golos', 'Jost', "Lato", Helvetica, Arial, sans-serif;
+   --font-family-2: 'Golos', 'Jost', "Lato", Helvetica, Arial, sans-serif;
+
+    /* Цвета */
+   --color-0: #333333;
+   --color-1: white;
+   --main-color: #F7F7F7;
+   --wb-color-2: #F7F7F7;
+   --color-3: #ED7138;  /* gray-blue BUTTON */
+   --color-3-1: #FA773A; /* button-hover */
+   --color-3-c: var(--color-3);  /* only-color */
+   --color-4: #FFC259;  /* yellow */
+   --color-5: #8551F5;  /* purple */
+   --color-6: #40AD6C;  /* green/text */
+   --color-7: #cfe7ce;  /* green/bg */
+   --color-7-1: #D0DCCF; /* lite-green  */
+   --color-8: #F06363;  /* red/bg #F06363 */
+   --color-8-1: #FFB2B2; /* lite-red  */
+   --color-9: #BF3939;  /* red/text #B20000 */ 
+   --color-10: #323232; /* gray-1 */
+   --color-11: #CECECE; /* gray-2 */
+   --color-12: #F5F5F5; /* gray-3 */
+   --color-13: #A4C6F1; /* light-blue */
+   --color-14: #171717; /* gray-4 */
+   --color-15: #F3F3F3; /* gray-5 */
+   --color-16: #A09D9D; /* gray-6 */
+   --color-17: #415A80; /* link-default */
+   
+   /* Иконки (раскомментировать перед использованием)*/
+   /*
+   --default-user-img:  url("");
+   --document-circle-icon:  url("");
+   --checkmark-circle-icon:  url("");
+   --warning-circle-icon:  url("");
+   --clock-circle-icon:  url("");
+   --sandclock-circle-icon:  url("");
+   --cross-circle-icon:  url("");
+   --sort-desc-icon:  url("");
+   --sort-asc-icon:  url("");
+   --mic-icon:  url("");
+   --paperclip-icon: url("");
+   --smile-icon:  url("");
+   --paperplane-icon:  url("");
+   --arrow-straight-icon:  url("");
+   --checkmark-icon: url("");
+   --cross-icon: url("");
+   --bell-icon: url("");
+   --heart-icon: url("");
+   */
+}
+
+/* Настройки меню */
+html #gcAccountUserMenu {
+  --m-bg-color: #F5F5F5;
+  --m-item-font-color: #333333;
+  --m-item-color: transparent;
+  --m-item-active: rgba(255,255,255,1);
+  --m-item-hover-color: rgba(255,255,255,0.5);
+  --m-item-icon-color: #292929;
+  --m-default-avatar-color: #cecece;
+  --m-notify-color: #BF3939;
+  --m-custom-btn-color: var(--color-3);
+  --m-custom-btn-color-hover: var(--color-3-1);
+  --m-custom-btn-text: "Отдел заботы";
+  --m-custom-btn-url: "javascript://$('.activated-talks-widget').data('gc-talksWidget').showTalksWindow()"; /* "/pl/talks/conversation" */
+  /*--m-burger-icon: url("");*/
+}
+
+
+html .remake-productTiming:not(.editable) {
+  display: none;
+}
+
+
+html.page-ready #gcAccountUserMenu .gc-account-leftbar .notify-count, 
+html.page-ready #gcAccountUserMenu .gc-account-leftbar .submenu-notify-count {
+    background: var(--color-3-c)!important;
+    box-shadow: var(--color-3-c);
+}
+
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a {
+    grid-template-rows: 25px auto;
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a:after {
+  display: none;
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins {
+    grid-area: email;
+    font-family: var(--font-family-2);
+    font-style: normal;
+    font-weight: normal;
+    line-height: 120%;
+    color: var(--m-item-font-color);
+    align-self: start;
+    overflow: hidden;
+    max-width: 300px;
+    white-space: nowrap;
+    font-size: 12px;
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > span:first-child {
+  margin-right: 3px;
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > span > span {
+  font-weight: bold;
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > .alrt-btn {
+  font-size: 10px;
+  line-height: 14px;
+  text-align: center;
+  background: #C2C2C2;
+  color: #ffffff;
+  border: none;
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  margin-left: 2px;
+  border-radius: 50%;
+  padding: 0!important;
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > .tooltip .tooltip-arrow {
+  border-color: white !important;
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > .tooltip .tooltip-inner {
+  background: white !important;
+  color: #222222;
+  font-family: var(--font-family-2);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > .tooltip {
+  padding: 8px 15px;
+}
+html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > .tooltip.in {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+@media (max-width:768px) {
+  html.page-ready #gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a > .user-coins > .alrt-btn {
+    display: none;
+  }
+}
+
+html.page-ready .gc-tasks-block .annotate-block {
+    background: #d6d6d6;
+}
+
+html.page-ready #gcAccountUserMenu .gc-account-leftbar .menu-item-chatium {
+  display: none;
+}
+
+html body.isTrainingsPage,
+html body.isOneTrainingPage,
+html body.isLessonPage,
+html body.isMyPurchasesPage,
+html body.isNotificationsPage,
+html body.isNotificationsAllPage,
+html body.isProfilePage,
+html body.isPasswordPage,
+html body.isChatiumPage,
+html body.isProfileFrame,
+html body.isPasswordFrame,
+html body.isChatiumFrame,
+html body.isWebinarPage,
+html body.isSchedulePage,
+html body.isConversationPage,
+html body.isMyAccountsPage,
+html body.isMyAnswersPage,
+html body.isOpenProfilePage,
+html body.isPaymentsPage {
+   padding-bottom: 0!important;
+}
+html body.isTrainingsPage .gc-main-content,
+html body.isOneTrainingPage .gc-main-content,
+html body.isLessonPage .gc-main-content,
+html body.isMyPurchasesPage .gc-main-content,
+html body.isNotificationsPage .gc-main-content,
+html body.isNotificationsAllPage .gc-main-content,
+html body.isProfilePage .gc-main-content,
+html body.isPasswordPage .gc-main-content,
+html body.isChatiumPage .gc-main-content,
+html body.isProfileFrame .gc-main-content,
+html body.isPasswordFrame .gc-main-content,
+html body.isChatiumFrame .gc-main-content,
+html body.isSchedulePage .gc-main-content,
+html body.isConversationPage .gc-main-content,
+html body.isMyAccountsPage .gc-main-content,
+html body.isMyAnswersPage .gc-main-content,
+html body.isOpenProfilePage .gc-main-content,
+html body.isPaymentsPage .gc-main-content {
+   background: #FBFBFB!important;
+   padding-bottom: 120px;
+}
+
+body .page-header .breadcrumb a,
+body .header-box .breadcrumb a,
+body .header-box .breadcrumbs a,
+body .chatium-header-box .breadcrumbs a,
+body .chatium-head-block .breadcrumb a {
+  color: #333333 !important;
+  border-color: transparent;
+}
+body .breadcrumb > li + li:before,
+body .header-box .breadcrumb > li + li:before, 
+body .header-box .breadcrumbs > a + a:before, 
+body .chatium-header-box .breadcrumbs > .html-content a + a:before,
+body .chatium-head-block .breadcrumb a + a:before {
+  color: var(--color-0) !important;
+}
+body .page-header .breadcrumb li:last-child,
+body .chatium-head-block .breadcrumb li:last-child {
+  color: #333333; 
+  opacity: 0.5;
+}
+body .page-header h1,
+body .chatium-head-block h1,
+body .lesson-header-block .lesson-title-value,
+body .lesson-header-block .lesson-description-value,
+body .header-box .lesson-navigation td a {
+  color: var(--color-0) !important;
+}
+body .header-box .lesson-navigation td:first-child a:before, 
+body .header-box .lesson-navigation td:last-child a:after {
+  filter: invert(0.8);
+}
+body .header-box a {
+  color: var(--color-0) !important;
+}
+body .header-box .breadcrumb a:hover,
+body .header-box .breadcrumbs a:hover, 
+body .chatium-header-box .breadcrumbs a:hover {
+  border-bottom: 1px solid #ED7138;
+}
+body .header-box .breadcrumb > li + li:before {
+  color: var(--color-0) !important;
+}
+body .header-box .stream-description {
+  color: var(--color-0);
+}
+body .header-box .stream-lessons {
+  color: var(--color-0);
+}
+
+html .talks-widget-window .caption {
+  color: var(--color-0)
+}
+html .talks-widget-header .btn-close,
+html .talks-widget-window .talks-widget-header .btn-back  {
+  filter: invert(1);
+}
+html .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .mark-viewed-all, 
+html .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .header a {
+  color: var(--color-0);
+}
+html .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .mark-viewed-all:hover, 
+html .gc-account-leftbar .gc-account-user-submenu-bar-notifications_button_small .header a:hover {
+   border-color: var(--color-0);
+}
+
+
+html body > .lesson-title,
+html body > .lesson-title h2,
+html body > .lesson-title + style + div,
+html body > .lesson-title + style + div a {
+  color: var(--color-0)!important;
+}
+
+
+.gc-account-leftbar .toggle-link > .m-burger-btn {
+  background: var(--color-0);
+}
+.gc-account-leftbar .toggle-link > .m-notify {
+  filter: invert(1);
+}
+.gc-account-leftbar .toggle-link > .m-notify .notify-count {
+  filter: invert(1);
+}
+.dark-theme .toggle-link > .m-notify .notify-count {
+  filter: invert(0);
+}
+
+/* шапка с логотипом на главной странице тренингов */
+@media (min-width: 769px) {
+  .isTrainingsPage > .gc-main-content > .page-full-block > .main-page-block:before {
+    content: "";
+    display: block;
+    height: 86px;
+    background: var(--main-color) var(--m-account-logo) center / auto 30px no-repeat;
+    font-family: var(--font-family-2);
+  }
+}
+
+.talks-widget-window .conversation-widget .gc-comment-form {
+border-top: 1px solid #eee;
+}
+
+.isProfileFrame .user-data .col-md-6 {
+    display: flex;
+    flex-direction: column;
+}
+.theme-picker {
+    order:1;
+}
+.isProfileFrame.dark-theme .page-header:before, .isPasswordFrame.dark-theme .page-header:before {
+background-size: auto 20px;
+}
+@media (max-width: 768px) {
+.gc-account-leftbar .toggle-link > .m-account-logo {
+
+}
+
+.dark-theme .gc-account-leftbar .toggle-link {
+    background: inherit;
+}
+    .lesson-navigation tr td:nth-last-child(1) {
+padding-left:19px;
+}
+}
+.hljs {
+    background: #2b2b2c!important;
+    border-radius: .5em;
+    border:none!important;
+}
+
+.blink {
+  animation-iteration-count: 5;
+  animation-name: blinker;
+  animation-timing-function: cubic-bezier(1.0,2.0,0,1.0);
+  animation-duration: .3s;
+  -webkit-animation-name: blinker;
+  -webkit-animation-iteration-count: 5;
+  -webkit-animation-timing-function: cubic-bezier(1.0,2.0,0,1.0);
+  -webkit-animation-duration: .3s;
+}
+@keyframes blinker {
+  from { border-color: red; }
+  to { border-color: #bbb; }
+}
+@-webkit-keyframes blinker {
+  from { border-color: red; }
+  to { border-color: #bbb; }
+}
+.part-html.setting-editable {
+    background: grey;
+}
+summary {
+display: flex!important;
+}
+.page-header {
+    border-bottom: 0px solid #eee!important;
+}
+.lt-lesson-feedback-block textarea, .lesson-mission-wrapper .answer-form textarea, .lesson-mission-wrapper .answer-form input[type="text"], .simple-answer .new-comment-textarea, .emoji-wysiwyg-editor, .comment-form-wrapper .new-comment-textarea, .new-comment-textarea.edited-comment-text {
+padding-right: 80px!important;
+}
+.dark-theme .breadcrumbs-peak__link:hover {
+    color: white;
+}
+.dark-theme .header-box .lesson-header-block .lesson-title-value {
+    color: var(--color-0) !important;
+}
+.dark-theme .header-box .lesson-navigation td a:hover {
+    color: var(--color-0) !important;
+    border-color: var(--color-0) !important;
+}
+html body.dark-theme  .stream-table tr.noaccess-mode-show td {
+    --main-color: unset;
+}
+
+html body .talks-widget-header .btn-close {
+    background-image: url("https://remake-proxy.ru/themes/images/icons/big-cross.svg");
+}
+
+/* ------------- 
+content start - OneTraningPage
+------------- */
+
+/*
+@media (min-width: 1201px) {
+  .isOneTrainingPage .header-box .left-side, 
+  .isOneTrainingPage .chatium-header-box .left-side {
+    padding: 36px 0 44px;
+  }
+  .isOneTrainingPage .header-box .left-side:before, 
+  .isOneTrainingPage .chatium-header-box .left-side:before {
+    content: "";
+    display: block;
+    outline: none;
+    height: 30px;
+    background: var(--m-account-logo) no-repeat;
+    background-size: auto 30px;
+    background-position: left top;
+    background-clip: content-box;
+    padding: 0;
+    width: var(--container-width) !important;
+    margin: 0 auto 60px;
+  }
+}
+*/
+
+
+
+@media (min-width: 1201px) {
+  .isOneTrainingPage .header-box .cover-side, 
+  .isOneTrainingPage .chatium-header-box .cover-side {
+    padding: 66px 0 44px;
+  }
+}
+
+body.isOneTrainingPage .progress-x-bar .xdget-trainingAchievements{display:none;}
+body.isOneTrainingPage .progress-x-bar {
+  font-size: 14px;
+  text-align: center;
+}
+body.isOneTrainingPage .progress-x-bar .inliner {
+  height: 100%;
+}
+body.isOneTrainingPage .progress-x-bar .inliner,
+body.isOneTrainingPage .progress-x-bar .inliner + .inlined {
+  display: inline-block;
+  vertical-align: middle;
+}
+body.isOneTrainingPage .progress-x-bar .inlined {
+  width: 100%;
+  max-width: calc(100vw - 30px);
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+body.isOneTrainingPage .progress-x-bar .inlined.fadeOpacity {
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+}
+body.isOneTrainingPage .progress-x-bar .inlined::-webkit-scrollbar {
+  display: none;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter {
+  margin: 0 auto 40px;
+  padding: 40px 15px;
+}
+body.isOneTrainingPage .progress-x-bar .inlined.fadeOpacity .progress-meter {
+  padding-right: 70px;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter {
+  counter-reset: point;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point:before {
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  border-radius: 24px;
+  -moz-box-shadow: 0 0 0 2px #FBFBFB;
+  -webkit-box-shadow: 0 0 0 2px #FBFBFB;
+  box-shadow: 0 0 0 2px #FBFBFB;
+  content: "\2713";
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  border: 4px solid #6C6C6C;
+  text-align: center;
+  background-color: #6C6C6C;
+  color: var(--color-1);
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .track {
+  position: relative;
+  height: 2px;
+  background: #EEE9E6;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress {
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  -webkit-transition: width 1s;
+  transition: width 1s;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-3);
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-points {
+  position: relative;
+  margin: -16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point {
+  -moz-transition: color 1s;
+  -o-transition: color 1s;
+  -webkit-transition: color 1s;
+  transition: color 1s;
+  position: absolute;
+  display: block;
+  width: 30px;
+  margin-left: -15px;
+  text-align: center;
+  cursor: pointer;
+  color: #6C6C6C;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point.completed, .progress-meter .progress-point.active {
+  color: #777;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point:not(.completed):not(.available) {
+  pointer-events: none;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point:not(.completed):not(.available):before {
+  content: "";
+  background: #6C6C6C url("/fileservice/file/download/a/447136/sc/243/h/be04cfdf89a41d636b8590a7a09435cb.svg") left 1px center no-repeat;
+  pointer-events: none;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point.available:before {
+  background: #6C6C6C;
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point.completed:before {
+  border-color: var(--color-3);
+  background-color: var(--color-3);
+}
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point.active:before {
+  -moz-transition-delay: 1s;
+  -o-transition-delay: 1s;
+  -webkit-transition-delay: 1s;
+  transition-delay: 1s;
+  border-color: #6C6C6C;
+}
+/* Показать номера этапов */
+body.isOneTrainingPage .progress-x-bar .progress-meter .progress-point:before {
+  counter-increment: point;
+  content: counter(point);
+}
+body.isOneTrainingPage .progress-main-container .xdget-trainingAchievements {
+  display: none;
+}
+body.isOneTrainingPage .progress-x-bar .inlined {
+   max-width: calc(100vw - 300px - 47px)!important;
+}
+body.isOneTrainingPage.compact-menu .progress-x-bar .inlined {
+   max-width: calc(100vw - 90px - 47px)!important;
+}
+@media(max-width:768px) {
+  body.isOneTrainingPage .progress-x-bar .inlined,
+  body.isOneTrainingPage.compact-menu .progress-x-bar .inlined {
+    max-width: calc(100vw - 47px)!important;
+  }
+}
+
+body.isOneTrainingPage .header-box .stream-lessons .stream-progress-bg {
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+}
+body.isOneTrainingPage .header-box .stream-lessons .stream-progress-fill {
+  height: 10px;
+  border-radius: 10px;
+  background-color: #ed7138;
+}
+
+
+body.isOneTrainingPage .header-box .stream-info {
+  margin-top: 24px;
+  display: flex;
+}
+body.isOneTrainingPage .header-box .stream-info .si_prt {
+    position: relative;
+    padding-left: 0;
+    padding-top: 54px;
+    margin-right: 22px;
+    min-width: 100px;
+}
+body.isOneTrainingPage .header-box .stream-info .si_prt:before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0; left: 0;
+    border-radius: 50%;
+    background: rgba(51, 51, 51, 0.1) url() center / 50% no-repeat;
+}
+body.isOneTrainingPage .header-box .stream-info .si_l_passed:before {
+    background-image: url("/fileservice/file/download/a/177331/sc/168/h/1356738c8afe1ada13004f026a1ef11d.svg");
+}
+body.isOneTrainingPage .header-box .stream-info .si_start:before {
+    background-image: url("/fileservice/file/download/a/177331/sc/149/h/ece097b8d6e0b0a5098df808830a6253.svg");
+}
+body.isOneTrainingPage .header-box .stream-info .si_end:before {
+    background-image: url("/fileservice/file/download/a/177331/sc/72/h/252ed32ac2833341ca00742cb27b647c.svg");
+}
+@media (max-width:500px) {
+  body.isOneTrainingPage .header-box .stream-info .si_prt:before {
+    width: 36px;
+    height: 36px;
+  }
+  body.isOneTrainingPage .header-box .stream-info .si_prt {
+    padding-top: 45px;
+    margin-right: 30px;
+    min-width: auto;
+  }
+}
+
+
+
+body.isOneTrainingPage .header-box .stream-info .si_h {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+body.isOneTrainingPage .header-box .stream-info .si_d {
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 1.3;
+}
+
+html body .lesson-list li a .description {
+    color: var(--color-0);
+    opacity: 0.5;
+}
+html body .lesson-list li a:hover .title, 
+html body .lesson-list li a:hover .description {
+    color: var(--color-3-c) !important;
+}
+html body .lesson-list li.user-state-has_mission .state-icon-block:before {
+  content: "Не пройдено";
+}
+html body .lesson-list li.user-state-has_mission .state-icon-block:before {
+  color: #17171766;
+}
+html body .lesson-list li.user-state-has_mission .user-state-label {
+  font-size: 0;
+}
+html body .lesson-list li.user-state-has_mission .user-state-label:before {
+  content: "Не пройдено";
+  font-size: 14px;
+  color: #17171766;
+}
+html body .lesson-list li.user-state-has_mission .state-icon-block:after {
+  background: #17171766;
+}
+.lesson-list li.user-state-has_mission .state-icon-block .user-state-label-ex:after {
+  background: #17171766;
+  mask-image: var(--document-circle-icon);
+  -webkit-mask-image: var(--document-circle-icon);
+}
+html body .lesson-list li.user-state-accomplished .state-icon-block:before {
+  content: "Пройдено";
+}
+html body .lesson-list li.user-state-answered .state-icon-block:before {
+  color: #EAA623;
+}
+html body .lesson-list li.user-state-answered .state-icon-block:after {
+  background: #EAA623;
+}
+html body .lesson-list li .state-icon-block .lesson-date {
+  display: none!important;
+}
+
+@media (min-width:1550px) {
+  body.isOneTrainingPage .header-box h1, 
+  body.isOneTrainingPage .chatium-header-box h1 {
+    font-size: 32px;
+  }
+  body.isOneTrainingPage .header-box .stream-description, 
+  body.isOneTrainingPage .chatium-header-box .stream-description {
+    opacity:0.5;
+  }
+  body.isOneTrainingPage .header-box .stream-info .si_h {
+    font-size: 14px;
+  }
+  body.isOneTrainingPage .header-box .stream-info .si_d {
+    font-size: 12px;
+  }
+}
+
+/* ------------- 
+content finish - OneTraningPage
+------------- */
+
+/* ------------- 
+content start - TrainingsPage
+------------- */
+
+html body .stream-table td {
+  border: 1px solid #EEEEEE;
+  border-radius: 12px;
+  min-height: 260px;
+  box-shadow: 0px 0px 15px rgb(28 39 49 / 0%);
+  transform: translateY(0);
+  transition: transform 0.3s;
+}
+html body .stream-table td:hover {
+  box-shadow: 0 12px 15px 0 rgb(28 39 49 / 3%);
+  transform: translateY(-7px);
+}
+html body .stream-table .stream-num-lessons {
+  display:none;
+}
+html body .stream-table .stream-title {
+  color: var(--color-0);
+}
+html body .stream-table .stream-description {
+  color: var(--color-0);
+  opacity: 0.5;
+}
+html body .stream-table td a {
+  display: flex;
+  flex-direction: column;
+}
+
+html body .stream-table .stream-img {
+  display: flex;
+  align-items: stretch;
+}
+html body .stream-table .stream-img img {
+  display: block;
+  height: auto;
+}
+
+html body .stream-table tr.noaccess-mode-show td {
+  --main-color: #F5F5F5;
+}
+html body .stream-table tr.noaccess-mode-show  a {
+  opacity: 0.6;
+}
+
+.stream-progress {
+  font-size: 16px;
+  color: var(--color-0);
+  margin-top: auto;
+}
+.stream-progress-text {
+  margin-bottom: 7px
+}
+.stream-progress-bg {
+  background: white;
+  height: 5px;
+  width: 140px;
+}
+.stream-progress-fill {
+  background: #ED7138;
+  height: 5px;
+}
+
+
+@media (min-width:1550px) {
+  html body .stream-table .stream-title {
+    font-size: 22px!important;
+  }
+  html body .stream-table .stream-description, 
+  html body .stream-table .stream-num-lessons b {
+    font-size: 16px;
+  }
+  html body .stream-progress {
+    font-size: 16px;
+  }
+}
+
+/* ------------- 
+content finish - TrainingsPage
+------------- */
+
+/* ------------- 
+content start - LoginPage
+------------- */
+
+body.isLoginPage .xdget-loginUserForm .logined-form h2, 
+body.isLoginPage .xdget-loginUserForm .register-form h2, 
+body.isLoginPage .xdget-loginUserForm .login-form h2, 
+body.isLoginPage .xdget-loginUserForm .remind-block h2,
+body.isContactUsPage .xdget-contactForm .before-send-form h2, 
+body.isContactUsPage .xdget-contactForm .after-send-form h2 {
+    color: var(--color-0);
+}
+body.isLoginPage a[href="/cms/system/contact"] {
+    color: var(--color-0)!important;
+    border-bottom: 1px solid var(--color-0)!important;
+}
+body.isLoginPage .xdget-loginUserForm a, 
+body.isLoginPage .btn-link {
+    color: var(--color-17)!important;
+}
+body.isLoginPage .xdget-loginUserForm a, 
+body.isLoginPage .xdget-loginUserForm .btn-link:hover {
+    border-bottom: 1px solid var(--color-17) !important;
+}
+.xdget-loginUserForm .register-form, 
+.xdget-loginUserForm .login-form, 
+.xdget-loginUserForm .logined-form, 
+.xdget-loginUserForm .remind-block, 
+.xdget-loginUserForm .login-block,
+.xdget-contactForm .before-send-form {
+    border: 1px solid #EEEEEE;
+}
+body.isLoginPage .xdget-common-user-form .global-confirm-checkbox + .checkbox-text {
+  color: var(--color-0);
+}
+body.isLoginPage {
+  --color-17: #2C6365;
+}
+/* ------------- 
+content finish - LoginPage
+------------- */
+
+/* ------------- 
+content start - WebinarPage
+------------- */
+
+body.isWebinarPage  {
+    background: #FBFBFB!important
+}
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .breadcrumb *, 
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .webinar-title *,
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .controls-buttons > .btn-group > .btn, 
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .controls-buttons > .btn, 
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .two-panel .webinar-menu-view button,
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .broadcast-microphone-popover.off, 
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .broadcast-camera-popover.off, 
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .broadcast-screen-popover.off,
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .webinar-chat-toggle,
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .webinar-chat-toggle .fa,
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .moderation-link,
+body.isWebinarPage.yt-webinar-page .chat-header,
+body.isWebinarPage.yt-webinar-page #webinar-content-block > .lite-page.block-set > .o-lt-onecolumn-common:first-child .f-header  {
+  color: #222222!important;
+}
+body.isWebinarPage.yt-webinar-page .chat-header .custom-count-users:before {
+  background: #222222!important;
+}
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .controls-buttons > .broadcast-popover,
+body.isWebinarPage.yt-webinar-page .webinar-admin-page .two-panel .webinar-menu-view .webinar-menu button {
+  color: white!important;
+}
+
+body.isWebinarPage.teaser-webinar-page .description, 
+body.isWebinarPage.teaser-webinar-page .countdown-text, 
+body.isWebinarPage.teaser-webinar-page .countdown:before,
+body.isWebinarPage.teaser-webinar-page .title, 
+body.isWebinarPage.teaser-webinar-page .title:before {
+    color: var(--color-0)!important;
+}
+
+body.isWebinarPage.teaser-webinar-page .countdown {
+    color: var(--color-3-c)!important;
+}
+
+body.isWebinarPage.yt-webinar-page .new-comment-input, 
+body.isWebinarPage.yt-webinar-page:not(.mobile) .comments-tree,
+body.isWebinarPage.yt-webinar-page.mobile .comments-main-container {
+    background: #F5F5F5!important;
+}
+
+body.isWebinarPage.yt-webinar-page.mobile #webinar-content-block.mobile .webinar-ads-block {
+    padding:0;
+}
+
+body.isWebinarPage.teaser-webinar-page .title:before {
+    content: "Эфир";
+}
+/* ------------- 
+content finish - WebinarPage
+------------- */
+
+/* ------------- 
+content start - MyPurchasesPage
+------------- */
+
+body.isMyPurchasesPage {
+  --color-17: #2C6365;
+}
+.isPurchasePage.dark-theme .key-value-table .value, .isPurchasePage.dark-theme .key-value-table .text ,.isPurchasePage.dark-theme .panel-body div,label[for="UserProduct_is_disabled_by_manager"],.isPurchasePage.dark-theme .table-notitle {
+  color:var(--color-0);
+}
+.isPurchasePage.dark-theme .key-value-table td.key {
+  background:var(--body-back);
+}
+/* ------------- 
+content finish - MyPurchasesPage
+------------- */
+
+/* ------------- 
+content start - LessonPage
+------------- */
+
+body.isLessonPage .f-text a, 
+body.isLessonPage .f-text a:hover, 
+body.isLessonPage .f-text a:focus {
+    color: var(--color-3);
+}
+body.isLessonPage .lt-lesson-mission-block > .lt-block-wrapper > .container {
+    max-width: none;
+}
+body.isLessonPage .testing-widget .before-start-block {
+  text-align:center;
+}
+body.isLessonPage .header-box .lesson-navigation td a {
+  padding: 7px 16px 7px 45px;
+  border: 0.7px solid rgba(51, 51, 51, 0.3);
+  transition: border-color .2s;
+}
+body.isLessonPage .header-box .lesson-navigation td a:hover {
+  border: 0.7px solid #ED7138 ;
+}
+body.isLessonPage .header-box .lesson-navigation td:last-child a {
+  padding: 7px 45px 7px 16px;
+}
+body.isLessonPage .header-box .lesson-navigation td:first-child a:before {
+  left: 16px;
+}
+body.isLessonPage .header-box .lesson-navigation td:last-child a:after {
+  right: 16px;
+}
+@media (max-width: 425px) {
+  body.isLessonPage .header-box .lesson-navigation td a {
+    padding: 7px 16px 7px 16px !important;
+  }
+  body.isLessonPage .header-box .lesson-navigation td:first-child a:before,
+  body.isLessonPage .header-box .lesson-navigation td:last-child a:after {
+    display: none;
+  }
+}
+
+
+body.isLessonPage .testing-results {
+  width: 80%;
+  margin: 0 auto;
+}
+body.isLessonPage .testing-results .result-row {
+  margin-bottom:10px;
+  padding: 10px 20px 10px 50px;
+  background: #ffdddd;
+  border: 1px solid #ffa6a6;
+  border-radius: 9px;
+  position: relative;
+}
+body.isLessonPage .testing-results .result-row.is_right {
+  background: #e9ffdd;
+  border: 1px solid #afd7b4;
+}
+body.isLessonPage .testing-results .result-row:before {
+  content:"\f00d";
+  font-family: FontAwesome;
+  font-size: 30px;
+  display: block;
+  width:30px;
+  height:30px;
+  position:absolute;
+  left: 13px;
+  top: 50%;
+  margin-top: -23px;
+  color: #d93f3f;
+}
+body.isLessonPage .testing-results .result-row.is_right:before {
+  content:"\f00c";
+  font-size: 28px;
+  margin-left: -2px;
+  margin-top: -22px;
+  color: #80e37e;
+}
+body.isLessonPage .testing-widget .question {
+    margin: 0 auto;
+}
+body.isLessonPage .testing-widget .question .question-number {
+    text-align: center;
+}
+body.isLessonPage .testing-widget .btn:not(.btn-send-variant):not(.btn-mark-variant), 
+body.isLessonPage .testing-widget .btn.btn-send-all-variants {
+    margin: 26px auto 0;
+}
+body.isLessonPage .testing-widget .stat-block>.row, 
+body.isLessonPage .testing-widget .stat-block>div>div, 
+body.isLessonPage .testing-widget .stat-block .stat-str {
+    text-align: center!important;
+}
+
+/* ------------- 
+content finish - LessonPage
+------------- */
+
+/* ------------- 
+content start - profileDarkTheme
+------------- */
+
+html body.dark-theme {
+  --body-back: #232323;
+  --black-main-color: #2B2B2C;
+  --black-border: #393939;
+   --color-0: #8A8A8A;
+  --main-color: transparent; 
+  --color-1: #EBEBEB;
+  --color-3: #ED7138;
+  --color-3-1: #FD793C;
+  --color-12: #232323;
+--color-9: #E74C3C;
+  --color-10: #8a8a8a;
+  --color-3-c: #ED7138;
+  --color-14: #ddd;
+  --color-17: #ED7138;
+  --color-7: #2B2B2C;
+--color-6: #40AD6C;
+    --m-account-logo: url("/fileservice/file/download/a/177331/sc/120/h/a859179a848aac2c54a15f69d7983b65.svg");
+}
+html body.dark-theme .gc-main-content {
+    background: var(--body-back)!important;
+}
+body.dark-theme{
+ background: var(--main-color);
+}
+.dark-theme .page-header {
+    border-color: var(--black-border);
+}
+.dark-theme .isTrainingsPage > .gc-main-content > .page-full-block > .main-page-block:before {
+background-size: auto 20px;
+}
+
+
+/*Профиль*/
+.dark-theme.isProfileFrame .page-header h1 {
+    color: var(--color-1) !important;
+}
+.dark-theme.isProfileFrame .select-btns input:checked + .btn {
+    background: var(--color-3);
+}
+.dark-theme .isProfileFrame input, .isProfileFrame select, .dark-theme .isProfileFrame textarea {
+  color: var(--color-0);
+  background-color: var(--black-main-color);
+}
+.dark-theme .emailField .fa-chevron-circle-down {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 27px;
+    height: 27px;
+    font-size: 0;
+    background: var(--color-6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9' fill='none'%3E%3Cpath d='M10.7829 1.56445L4.9136 7.43402L1.3916 3.91186' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.dark-theme .isProfileFrame .panel {
+  background-color: transparent;
+}
+.isProfileFrame.dark-theme input, .isProfileFrame.dark-theme select, .isProfileFrame.dark-theme textarea {
+    color: var(--color-0);
+    background-color: var(--black-main-color);
+}
+body.dark-theme.isPasswordFrame .page-header .breadcrumb a {
+    color: var(--color-10) !important;
+}
+body.dark-theme.isPasswordFrame .page-header .breadcrumb li:last-child {
+    color: var(--color-10) !important;
+    opacity: 0.7 !important;
+}
+body.dark-theme.isPasswordFrame .page-header h1 {
+    color: var(--color-1) !important;
+}
+.dark-theme.isProfileFrame input, .dark-theme.isProfileFrame select, .dark-theme.isProfileFrame textarea {
+  color: var(--color-1);
+  background-color: var(--black-main-color);
+}
+.dark-theme.isProfileFrame input::placeholder, .dark-theme.isProfileFrame select::placeholder, .dark-theme.isProfileFrame textarea::placeholder {
+color: var(--color-0);
+}
+.isProfileFrame.dark-theme .page-menu li a {
+color: var(--color-1)!important;
+}
+.isProfileFrame.dark-theme .page-menu li.active a {
+    opacity: 1;
+color: var(--color-0)!important;
+}
+
+.isProfileFrame.dark-theme .emailField .email, .isProfileFrame.dark-theme .mailingCategories > label {
+    color: var(--color-1);
+}
+.isProfileFrame.dark-theme .btn-primary.saved {
+border: 1px solid #40AD6C!important;
+    color: #40AD6C!important;
+}
+body.isProfileFrame.dark-theme .page-header .breadcrumb li:last-child, body.isProfileFrame.dark-theme .chatium-head-block .breadcrumb li:last-child {
+    color: var(--color-0);
+    opacity: 1;
+}
+body.isProfileFrame.dark-theme .mailingCategories > label > input:checked ~ div {
+    background-color: var(--color-17);
+}
+body.dark-theme .page-header .breadcrumb a {
+ color: var(--color-0)!important;
+}
+/*OpenProfile*/
+
+.dark-theme .isOpenProfilePage, .dark-theme .isOpenProfilePage label {
+  color:var(--color-0)!important;
+  
+}
+.dark-theme .isOpenProfilePage h1, .dark-theme .isOpenProfilePage h2, .dark-theme .isOpenProfilePage h3, .dark-theme .isOpenProfilePage h4, .dark-theme .isOpenProfilePage h5, .dark-theme .isOpenProfilePage h6 {
+  color:var(--color-1)!important;
+}
+.dark-theme .isOpenProfilePage .label-warning {
+  background-color: var(--color-17);
+}
+.dark-theme .isPasswordFrame input {
+  color: var(--color-0);
+}
+.dark-theme input[type='password'] {
+    background: var(--black-main-color);
+}
+.dark-theme .select-btns label:last-child .btn {
+background-color: var(--black-main-color);
+ color: var(--color-1);
+}
+.dark-theme .panel {
+background-color: var(--black-main-color);
+    padding:5px;
+}
+/* ------------- 
+content finish - profileDarkTheme
+------------- */
+
+/* ------------- 
+content start - PaymentPage
+------------- */
+
+.isPaymentsPage .other-payment-methods table tr:first-child td:first-child,
+.isPaymentsPage .credit-payment-methods table tr:first-child td:first-child {
+  margin-bottom: 40px
+}
+.isPaymentsPage .credit-payment-methods td:last-child > label, 
+.isPaymentsPage .other-payment-methods td:last-child > label, 
+.isPaymentsPage .other-payment-methods td:last-child > form > label {
+  margin-bottom: 0!important;
+}
+.isPaymentsPage .credit-payment-methods table tr:first-child td:first-child {
+    margin: 0 auto!important;
+}
+.isPaymentsPage .credit-payment-methods table > tbody > tr > td {
+    text-align: center!important;
+}
+.isPaymentsPage #bankcard-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/242/h/d601748c50f4be21c04978ec649fabcb.png");
+}
+.isPaymentsPage #bankcard-wld-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/198/h/fe64f079dc64b9710cdd1107fa3483b8.png");
+}
+.isPaymentsPage #sbp-pay table tr:first-child td:first-child {
+    background-image: url("https://remake-proxy.ru/themes/images/spb_logo.svg");
+}
+.isPaymentsPage #ya-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/446/h/c5c622a1420c4f775301760520738b4a.svg");
+}
+.isPaymentsPage #tin-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/310/h/d180819cb6ed694dd65edae63ee9814e.svg");
+}
+.isPaymentsPage #ya-spl table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/12/h/bf2ef4ffcbedf34db4c3c2f830f3e12e.png");
+}
+.isPaymentsPage #dol-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/103/h/22d439a66cc5c0bd550b1f669f609953.svg");
+}
+.isPaymentsPage #yookassa-pay table tr:first-child td:first-child {
+    background-image: url(https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/273/h/a08fa01dcc701fb871c6d51c8c53ad62.png);
+}
+.isPaymentsPage #pgr_ps_norf-id table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/198/h/fe64f079dc64b9710cdd1107fa3483b8.png");
+}
+.isPaymentsPage #pgr_ps_sbercredit-id table tr:first-child td:first-child {
+    background-image: url(https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/273/h/a08fa01dcc701fb871c6d51c8c53ad62.png);
+}
+.isPaymentsPage #otp-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/153/h/43b59f679ea14930a8f6903e9aa31cb5.png");
+}
+.isPaymentsPage #tinkoff table tr:first-child td:first-child, 
+.isPaymentsPage #tinkoffcredit table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/160/h/94917f7c5836cb87d284c6acdb0355d2.png");
+}
+.isPaymentsPage #res-raz-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/130/h/c3466cb18eb81aae33615a0a490572a7.png");
+}
+.isPaymentsPage #act-cred-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/127/h/4f326398332d91d8be8650fdef681e98.png");
+}
+.isPaymentsPage #mandar-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/260/h/9140bb15bf3fa0dd511483bb5abdd503.png");
+}
+.isPaymentsPage #edin-pay table tr:first-child td:first-child {
+    background-image: url("https://fs.gcfiles.net/fileservice/file/download/a/177331/sc/204/h/eaf5b6fb1a9653a4fa53d85929428d70.png");
+}
+
+.isPaymentsPage .payment-modal[style*="block"] {
+  display: flex!important;
+  align-items: center; 
+  padding: 15px;
+}
+.isPaymentsPage .payment-modal .modal-content {
+  padding: 24px;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+}
+.isPaymentsPage .payment-modal .modal-header {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #000;
+  text-align: center;
+  font-family: var(--font-family-1);
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%;
+  margin-bottom: 7px;
+}
+.isPaymentsPage .payment-modal .modal-body {
+  padding: 0;
+}
+.isPaymentsPage .payment-modal .modal-body p {
+  color: #0F1214;
+  text-align: center;
+  font-family: var(--font-family-2);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; 
+  margin-bottom: 56px;
+}
+.isPaymentsPage .payment-modal .modal-body button.ok-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 6px;
+  background: #0F1214;
+  color: #FFF;
+  text-align: center;
+  font-family: var(--font-family-2);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; 
+}
+.isPaymentsPage .payment-modal .close-modal {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 14px; right: 12px;
+  border: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M18 18L6 6M18 6L6 18' stroke='%23ACACAC' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.isPaymentsPage .payment-modal .close-btn {
+  display: none;
+}
+.isPaymentsPage .modal-backdrop.in {
+  filter: alpha(opacity=70);
+  opacity: .7;
+}
+.isPaymentsPage .payment-modal .radios-container {
+  display: block;
+  margin-top: 24px;
+  text-align: left;
+}
+.isPaymentsPage .payment-modal .radios-container input,
+.isPaymentsPage .payment-modal .radios-container br {
+  display: none;
+}
+.isPaymentsPage .payment-modal .radios-container label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #D1D1D1;
+  padding: 16px;
+  color: #0F1214;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; 
+  margin-bottom: 10px;
+  transition: all .2s;
+  cursor: pointer;
+}
+.isPaymentsPage .payment-modal .radios-container label:hover {
+  border: 1px solid #605FFF;
+}
+.isPaymentsPage .payment-modal .radios-container label:before {
+  content: "";
+  display: inline-block;
+  width: 22px; height: 22px; 
+  border: 2px solid #ACACAC;
+  border-radius: 50%;
+}
+.isPaymentsPage .payment-modal .radios-container input:checked + label:before {
+  border: 7px solid #605FFF;
+}
+
+@media (max-width: 500px) {
+  .isPaymentsPage .payment-modal .modal-content {
+    padding: 20px 15px;
+  }
+}
+.isPaymentsPage #tinkoffcredit label{
+  font-size: 18px!important;
+}
+@media(max-width: 900px) {
+  .isPaymentsPage #tinkoffcredit label{
+    font-size: 16px!important;
+  }
+}
+.isPaymentsPage #payments-credit > * {
+  order: 3;
+}
+.isPaymentsPage #payments-credit > #tinkoffcredit {
+  order: 2
+}
+.isPaymentsPage #payments-credit > #otp-pay {
+  order: 1;
+}
+.isPaymentsPage #tinkoffcredit table > tbody > tr:nth-child(2) > td > div,
+.isPaymentsPage #tinkoffcredit button {
+  display: none!important;
+}
+/* ------------- 
+content finish - PaymentPage
+------------- */

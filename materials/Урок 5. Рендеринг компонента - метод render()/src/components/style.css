@@ -1,0 +1,12 @@
+.input-field {
+    display: flex;
+    flex-flow: column nowrap;
+
+    width: 300px;
+    padding: 24px;
+}
+
+.input-field label {
+    font-size: 10px;
+    color: gray;
+}

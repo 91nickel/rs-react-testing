@@ -1,0 +1,352 @@
+var layoutID = 13749;
+
+//// Настройка видимости оформления Remake:
+//// true - все
+//// false - никто
+//// window.userInfo.isAdmin - админы (не работает в чатиуме) 
+//// window.accountUserId == 216415659 - только пользователь с таким ID
+
+var customStyleVisibilityRule = true; 
+
+function extraScriptsX() {
+/****************************/
+/*       Extra Scripts      */       
+/****************************/
+
+    /* Фикс проблемы на странице процессов */      
+if (window.location.href.indexOf('/pl/tasks/mission/process') > -1) {
+    $('body').append(`
+<style>
+.standard-logo {
+    margin: 0!important;
+}
+.gc-main-content.with-left-menu .container {
+    margin-left: 0;
+    margin-right: 0;
+}
+.flowchart-zoom-about {
+    left: 110px;
+}
+@media (min-width: 769px){
+  #gcAccountUserMenu~.gc-main-content.with-left-menu>.container, 
+  #gcAccountUserMenu~.gc-main-content.with-left-menu>.page-full-block>.main-page-block>.container {
+    width: 100%!important;
+    margin: 0!important;
+  }
+  #gcAccountUserMenu~.gc-main-content.with-left-menu {
+    margin-left: 90px!important;
+    width: calc(100vw - 90px)!important;
+  }
+}
+</style>
+    `)
+}   
+    
+    // форма сбора обратной связи
+    // $.getScript('https://remake-proxy.ru/pl/cms/layout/js?id=32515&hash&bundle=0');
+    
+    if (window.PageChecker.isPaymentsPage) {
+      JSinjection('/pl/layout/13748/25/PaymentPage.js');
+    }
+ 
+    if(window.location.href.indexOf('/teach')>-1) {
+ JSinjection('/pl/layout/13748/20/SearchBlock.js');
+ //для кастомных блоков с кодом начало
+ $('body').prepend(`<style>.lite-page>* {
+  max-width: 100%;
+}@media (max-width: 1024px) {
+  html {
+    --container-width: calc(var(--parent-wv, 100vw) - 90px);
+  }
+}
+@media (max-width: 768px) {
+  html {
+    --container-width: var(--parent-wv, 100vw);
+  }
+}</style>`)
+//для кастомных блоков с кодом конец
+}
+if(window.PageChecker.isTrainingsPage || 
+   window.PageChecker.isOneTrainingPage) {
+  JSinjection('/pl/layout/13748/4/TrainingProgresses.js');
+  
+  $(()=>{
+    $(".stream-title + div").each((i,el)=>{
+      $(el).html((i,t)=>{return t.replace("Владилен Минин.", "").replace("Максим Иванов.", "")});
+    });
+  });
+
+}
+
+if(window.PageChecker.isLessonPage) {
+  JSinjection('/pl/layout/13748/8/lessonMissionSkip.js',()=>{
+    JSinjection('/pl/layout/13748/24/lessonMissionSkip2.js',()=>{
+      JSinjection('/pl/layout/13748/11/LessonNavs.js');
+
+   
+   // Принимаем урок автоматически
+   if ($('.lt-lesson-mission-block, nav.mode-selector .link[data-mode="mission"]').is(':visible')){
+   $(()=>{
+   let lessonMissionSkipInterval = setInterval(()=>{
+     if(typeof window.lessonMissionSkip != 'object' || typeof window.lessonMissionSkip.lessons != 'object') return false;
+     else if(
+         window.location.href.indexOf('/chatium') == -1 &&
+         window.location.href.indexOf('editMode=1') == -1
+     ) {
+       clearInterval(lessonMissionSkipInterval);
+       window.lessonId = typeof window.lessonId != "undefined" ? window.lessonId : parseInt(/id=(\d+)/gm.exec(window.location.href)[1]);
+       if(lessonMissionSkip.lessons.indexOf(window.lessonId) > -1) {
+         if(typeof window.lessonMissionSkip.hideMissionBlock != 'undefined' && window.lessonMissionSkip.hideMissionBlock === true) {
+           $('.lt-lesson-mission-block, nav.mode-selector .link[data-mode="mission"]').hide();
+         }
+         $.get("/pl/teach/control/lesson/webview?mode=mission&id="+window.lessonId, function(data){
+           if(!data.success) return false;
+           let pageDom = $('<xxx/>').append($.parseHTML(data.data.html));       
+           if (!$(pageDom).find('.self-answers .user-answer').length) {
+             sendFormThroughIframe("/pl/teach/control/lesson/webview?id="+window.lessonId, {
+               "LessonAnswer[answer_text]":'Просмотрено &#9989;',
+               "LessonAnswer[lesson_id]":window.lessonId,
+               "send-answer":"true",
+             });
+           }
+         });
+       }
+       function sendFormThroughIframe(url,formData) {
+         let iframe = $('<'+'iframe>', {name:'gagFrame',frameborder:0,border:0,width:0,height:0,style:'display:none'}).appendTo('body');
+         let form = $('<'+'form>', {action:url,method:'post',target:'gagFrame'}).appendTo('body');
+         $.each(formData, function (name, val) {
+           form.append('<'+'input type="hidden" name="'+name+'" value="'+val+'">');
+         });
+         form.submit();
+         setTimeout(function(){$(iframe).remove();$(form).remove()},1000);
+       }
+     }
+   }, 50);
+   });
+   }
+
+    });
+  });
+}
+
+if(window.PageChecker.isProfileFrame || window.PageChecker.isPasswordFrame) {
+ if (parent.document.cookie.indexOf('darkTheme')>-1) {$('body').addClass('dark-theme');}
+
+async function UpdateField() {
+  const response = await fetch('/addField');
+  const html = await response.text();
+   var parser = new DOMParser();
+ var doc = parser.parseFromString(html, 'text/html');
+ var theme = doc.querySelector('input[name="formParams[userCustomFields][1234657]"]').value
+ if (theme.length == 0) {theme = 'light'}
+  return theme;
+}
+UpdateField().then(theme => {
+if (theme == 'dark') {$('body').addClass('dark-theme');}
+})
+}
+else {
+JSinjection('/pl/layout/13748/13/EngLang.js');
+JSinjection('/pl/layout/13748/14/darkTheme.js');
+ JSinjection('/pl/layout/13748/21/FormsUpgrade.js');
+    if (document.cookie.indexOf('darkTheme')>-1) {
+$('html').css('background','#232323');
+}
+
+}
+if(window.location.href.indexOf('/fileservice/control/account/') > -1) {
+   JSinjection('/pl/layout/13748/17/FilesPreview.js'); 
+   $('body').addClass('isFilesStoragePage');
+}
+if(window.PageChecker.isProfileFrame) {
+ $('#User_language').parent().parent().append('<div class="theme-picker"><label for="color-theme">Тема</label><select name="color-theme" id="color-theme"></select></div>')
+if (parent.document.cookie.indexOf('lightTheme')>-1) {document.querySelector('#color-theme').innerHTML = '<option value="Светлая">Светлая</option><option value="Темная">Темная</option>'}
+else {$('body').addClass('dark-theme');document.querySelector('#color-theme').innerHTML ='<option value="Темная">Темная</option><option value="Светлая">Светлая</option>'}
+
+document.querySelector('#color-theme').onchange = () => {
+if (document.querySelector('#color-theme').value.indexOf('Светлая')>-1) {parent.document.cookie = 'theme=lightTheme;';window.parent.location.reload();$.ajax({
+  type: "POST",
+  url: "/pl/lite/block-public/process?id=1454875944",
+  dataType: "json",
+  data: { 
+    "formParams[userCustomFields][1234657]": "light",
+    "fromUrl": window.location.href,
+    "requestTime": window.requestTime,
+    "requestSimpleSign": window.requestSimpleSign
+  },
+  complete: function(e, xhr, settings){
+
+  }
+});}
+else {
+    
+    parent.document.cookie = 'theme=darkTheme;';window.parent.location.reload();$.ajax({
+  type: "POST",
+  url: "/pl/lite/block-public/process?id=1454875944",
+  dataType: "json",
+  data: { 
+    "formParams[userCustomFields][1234657]": "dark",
+    "fromUrl": window.location.href,
+    "requestTime": window.requestTime,
+    "requestSimpleSign": window.requestSimpleSign
+  },
+  complete: function(e, xhr, settings){
+
+  }
+});}
+}
+}
+/****************************/
+/*     END Extra Scripts    */       
+/****************************/
+}; // эти скобки не трогать
+
+
+$(document).on('remake-left-menu-ready',function(){
+$.get('/sales/control/userProduct/my', function(data) {
+    var pageDom = $('<xxx/>').append($.parseHTML(data));
+    let balance = {
+      coinPoints: pageDom.find('.alert.alert-success a[href*="UserBalanceRowSearch[type]=points"]').next('b').first().text().replace(/\D/gm,""),
+      total: (()=>{
+        pageDom.find('.alert.alert-success a').each((i,a)=>{
+          $(a).nextAll('b').first().remove();
+        })
+        return pageDom.find('.alert.alert-success b').first().text().replace(/\D/gm,"");
+      })(),
+    }
+    $('#gcAccountUserMenu .gc-account-user-menu li.menu-item-profile > a').append(`
+      <div class="user-coins">
+        <span><span>${balance.total}</span> ${declOfNum(balance.total, ['рубль','рубля','рублей'])}</span>
+        <span><span>${balance.coinPoints}</span> ${declOfNum(balance.coinPoints, ['монета','монеты','монет'])}</span>
+        <button type="button" class="alrt-btn" data-toggle="tooltip" data-placement="bottom" title="За\u00A0бонусные рубли вы\u00A0можете покупать курсы и\u00A0консультации">i</button>
+      </div>
+    `)
+    .find('.user-coins .alrt-btn').tooltip();
+    function declOfNum(number, titles) {  
+      cases = [2, 0, 1, 1, 1, 2];  
+      return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];  
+    }
+});
+});
+
+
+////////////////////////////////////////////
+//     Дальше ничего трогать не нужно!    //
+////////////////////////////////////////////
+
+$(document).on('remake-ready',()=>{
+  extraScriptsX();
+})
+
+let customStyleSheetLayoutID;
+if ((customStyleSheetLayoutID = /\/layout\/js\?id=(\d+)/.exec(document.currentScript.src)) !== null ||
+    (customStyleSheetLayoutID = /\/layout\/js?.*&id=(\d+)/.exec(document.currentScript.src)) !== null ||
+    (customStyleSheetLayoutID = /\/pl\/layout\/(\d+)/.exec(document.currentScript.src)) !== null) customStyleSheetLayoutID = customStyleSheetLayoutID[1];
+var customStyleSheetX = "/pl/cms/layout/css?hash&bundle=1&id="+customStyleSheetLayoutID;
+
+var remakeProxyX = "https://remake-proxy.ru";
+
+(function(){
+
+  if(!customStyleVisibilityRule || window.location.search.indexOf("originalview") > -1) {
+    $('#preloader-styles').remove();
+    return false;
+  }
+  
+  if(typeof styleX_init != "undefined") return false;
+  var styleX_init = 1; 
+ 
+  CSSinjection(customStyleSheetX);
+
+  setTimeout(()=>{ 
+    if($('#gcAccountUserMenu').length) launchLeftMenuScripts(); 
+    else $(document).ajaxSend(function(event, xhr, settings) {
+      if ( settings.url == "/cms/counters/menu" ) launchLeftMenuScripts();
+    });
+    function launchLeftMenuScripts() {
+      //js-cookie
+      !function(e){var n;if("function"==typeof define&&define.amd&&(define(e),n=!0),"object"==typeof exports&&(module.exports=e(),n=!0),!n){var t=window.Cookies,o=window.Cookies=e();o.noConflict=function(){return window.Cookies=t,o}}}(function(){function f(){for(var e=0,n={};e<arguments.length;e++){var t=arguments[e];for(var o in t)n[o]=t[o]}return n}function a(e){return e.replace(/(%[0-9A-Z]{2})+/g,decodeURIComponent)}return function e(u){function c(){}function t(e,n,t){if("undefined"!=typeof document){"number"==typeof(t=f({path:"/"},c.defaults,t)).expires&&(t.expires=new Date(1*new Date+864e5*t.expires)),t.expires=t.expires?t.expires.toUTCString():"";try{var o=JSON.stringify(n);/^[\{\[]/.test(o)&&(n=o)}catch(e){}n=u.write?u.write(n,e):encodeURIComponent(String(n)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent),e=encodeURIComponent(String(e)).replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent).replace(/[\(\)]/g,escape);var r="";for(var i in t)t[i]&&(r+="; "+i,!0!==t[i]&&(r+="="+t[i].split(";")[0]));return document.cookie=e+"="+n+r}}function n(e,n){if("undefined"!=typeof document){for(var t={},o=document.cookie?document.cookie.split("; "):[],r=0;r<o.length;r++){var i=o[r].split("="),c=i.slice(1).join("=");n||'"'!==c.charAt(0)||(c=c.slice(1,-1));try{var f=a(i[0]);if(c=(u.read||u)(c,f)||a(c),n)try{c=JSON.parse(c)}catch(e){}if(t[f]=c,e===f)break}catch(e){}}return e?t[e]:t}}return c.set=t,c.get=function(e){return n(e,!1)},c.getJSON=function(e){return n(e,!0)},c.remove=function(e,n){t(e,"",f(n,{expires:-1}))},c.defaults={},c.withConverter=e,c}(function(){})});
+      if (Cookies.get('compact-menu') === "true") $('body').addClass('compact-menu');
+      let $menuStyleLink = $("<link>", {rel: "stylesheet", type: "text/css", href: remakeProxyX+"/pl/layout/"+layoutID+"/15/left-menu-styles.css"});
+      $menuStyleLink.on('load', ()=>{
+          let wait_styles = setInterval(()=>{
+            if($('html').css('order') == 1) {
+              clearInterval(wait_styles);
+              JSinjection(remakeProxyX+"/pl/layout/"+layoutID+"/14/left-menu-scripts.js", ()=>{
+                $(()=>{setTimeout(()=>{ 
+                  $('.gc-account-leftbar').stickySidebar({minWidth: 768});
+                  $('html').addClass('page-ready');
+                  $('#gcAccountUserMenu').trigger('menu-ready');
+                })});
+              });
+            }
+          });
+      });
+      $('link[href*="/nassets/"]:last').after($menuStyleLink);
+   }
+   $(document).ajaxSuccess(function(event, xhr, settings) {
+    if ( settings.url == "/cms/counters/menu" ) {
+     let checkMenuReady = setInterval(()=>{
+       if($('#gcAccountUserMenu').hasClass('menu-ready')) {
+        clearInterval(checkMenuReady);
+        $('#gcAccountUserMenu .gc-account-leftbar .toggle-link').off().html(`
+          <a class="m-account-logo" href="javascript:void(0)" onclick="location.href=getComputedStyle($('#gcAccountUserMenu')[0]).getPropertyValue('--m-account-logo-url').replace(/['&quot;]/g,'')"></a>
+          <a class="m-notify" href="/notifications/notifications/all"><span class="notify-count"></span></a>
+          <a class="m-burger-btn" href="javascript:void(0)" onclick="showMobMenu(event)"></a>
+        `);
+        let counters = {
+          "chatium-chatium_app": ".submenu-item-chatium_app",
+          "chatium_updates": ".submenu-item-chatium_updates",
+          "sales-my_deals": ".submenu-item-my_deals",
+          "teach-answers": ".submenu-item-answers",
+        }
+        let json_counters = JSON.parse(xhr.responseText).counters;
+        $.each(json_counters, (name,val)=>{
+          if(typeof counters[name] !== "undefined" && val!=0) {
+            $(counters[name]).find('.submenu-notify-count').html(val);
+          }
+        });
+        if(typeof json_counters.notifications_button_small !== "undefined" && json_counters.notifications_button_small!=0) {
+          $('.gc-account-leftbar .toggle-link > .m-notify > .notify-count').html(json_counters.notifications_button_small);
+        }
+      }
+     },10);
+    }
+   });
+  });
+  JSinjection(remakeProxyX+"/pl/layout/"+layoutID+"/0/distributor.js", function(){
+    $(document).trigger('remake-ready');
+  });
+})();
+
+function JSinjection(fileName, callback) {
+  var script = document.createElement( "script" )
+  script.type = "text/javascript";
+  if(typeof callback != "undefined") {
+    if(script.readyState) {  // only required for IE <9
+      script.onreadystatechange = function() {
+        if ( script.readyState === "loaded" || script.readyState === "complete" ) {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else {  //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+  }
+  script.src = fileName;
+  document.getElementsByTagName( "head" )[0].appendChild( script );
+}
+
+function CSSinjection(fileName, callback) {
+  var link = document.createElement("link");
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  if(typeof callback != "undefined") {
+    link.onload = callback();
+  }
+  link.href = fileName;
+  document.head.appendChild(link);
+}

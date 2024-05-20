@@ -1,0 +1,153 @@
+
+
+.deal-status:not(.number-panel) {
+  font-size:0!important;
+  position:relative;
+  border-radius:5px;
+  padding:5px 10px;
+  display:inline-block;
+  width:auto!important;
+}
+
+.deal-status:not(.number-panel):before {
+  font-size:11px;
+}
+
+.deal-status.status-new:not(.number-panel) {
+  background:#675DF4;
+}
+
+.deal-status.status-new:not(.number-panel):before {
+  content:'Получен заказ';
+}
+
+.deal-status.status-in_work:not(.number-panel) {
+  background:#F99C10;
+}
+
+.deal-status.status-in_work:not(.number-panel):before {
+  content:'Взят менеджером';
+}
+
+.deal-status.status-not_confirmed:not(.number-panel) {
+  background:#2C9BF1 ;
+}
+
+.deal-status.status-not_confirmed:not(.number-panel):before {
+  content:'Квалификация пройдена';
+}
+
+.deal-status.status-payment_waiting:not(.number-panel) {
+  background:transparent;
+  border:2px solid #58b77f;
+}
+
+.deal-status.status-payment_waiting:not(.number-panel):before {
+  content:'Выставлен счет';
+  color:#58b77f;
+  font-weight:bold;
+}
+
+.deal-status.status-part_payed:not(.number-panel) {
+  background:#6EC64F!important;
+}
+
+.deal-status.status-part_payed:not(.number-panel):before {
+  content:'Частично оплачено';
+}
+
+
+.deal-status.status-pending:not(.number-panel) {
+  background:#CFF6F9;
+}
+
+.deal-status.status-pending:not(.number-panel):before {
+  content:'Скоринг новый';
+  font-weight:bold;
+  color:#056F90;
+}
+
+
+.deal-status.status-payed:not(.number-panel) {
+  background:#208024;
+}
+
+.deal-status.status-payed:not(.number-panel):before {
+  content:'Завершен';
+}
+
+.deal-status.status-cancelled:not(.number-panel) {
+  background:#8E8E8E;
+}
+
+.deal-status.status-cancelled:not(.number-panel):before {
+  content:'Отменен';
+}
+
+.deal-status.status-waiting_for_return:not(.number-panel) {
+  background:#E74C3C15;
+}
+
+.deal-status.status-waiting_for_return:not(.number-panel):before {
+  content:'Оформлен возврат';
+  font-weight:bold;
+  color:#e75041;
+}
+
+.deal-status.status-false:not(.number-panel) {
+  border:2px solid #E5E5E5;
+  background:transparent;
+}
+
+.deal-status.status-false:not(.number-panel):before {
+  content:'Удален';
+  color:#E5E5E5;
+}
+
+.gc-user-block .status-deal-status .text-right div {
+  font-size:0;
+  position:relative;
+}
+
+.gc-user-block .status-deal-status .text-right div:before {
+  font-size:12px;
+}
+
+.gc-user-block .status-new .text-right div:before {
+  content:'Получен заказ';
+}
+
+.gc-user-block .status-in_work .text-right div:before {
+  content:'Взят менеджером';
+}
+
+.gc-user-block .status-not_confirmed .text-right div:before {
+  content:'Переведен в платный';
+}
+
+.gc-user-block .status-false .text-right div:before {
+  content:'Удален';
+}
+
+.gc-user-block .status-payment_waiting .text-right div:before {
+  content:'Выставлен счет';
+}
+
+.gc-user-block .status-part_payed .text-right div:before {
+  content:'Частично оплачено';
+}
+
+.gc-user-block .status-waiting_for_return .text-right div:before {
+  content:'Оформлен возврат';
+}
+.gc-user-block .status-pending .text-right div:before {
+  content:'Скоринг новый';
+}
+
+.gc-user-block .status-payed .text-right div:before {
+  content:'Завершен';
+}
+
+.gc-user-block .status-cancelled .text-right div:before {
+  content:'Отменен';
+}

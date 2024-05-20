@@ -1,0 +1,13 @@
+function getGet(name) {
+    let s = window.location.search;
+    s = s.match(new RegExp(name + '=([^&=]+)'));
+    return s ? decodeURI(s[1]) : 'false';
+}
+
+$(function(){
+    $('[id="field-input-1340173"]').val(getGet("utm_source"));
+    $('[id="field-input-1340174"]').val(getGet("utm_medium")); 
+    $('[id="field-input-1340175"]').val(getGet("utm_campaign"));
+    $('[id="field-input-1340176"]').val(getGet("utm_content")); 
+    $('[id="field-input-1340177"]').val(getGet("utm_term")); 
+});

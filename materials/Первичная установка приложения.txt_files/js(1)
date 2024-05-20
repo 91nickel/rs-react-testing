@@ -1,0 +1,940 @@
+if (window.location.href.includes("widget")) {
+    document.documentElement.classList.add("is-widget")
+}
+
+(() => {
+    const url = new URL(window.location.href);
+
+    const documentClassNames = [];
+
+    const { isAdmin, isTeacher } = window.userInfo;
+    const isStudent = !isAdmin && !isTeacher;
+
+    if (isAdmin || isTeacher) documentClassNames.push("is-staff-role");
+    if (isStudent) documentClassNames.push("is-student-role");
+
+    let isEditMode = false;
+
+    if (window.location.pathname.includes("editMode")) {
+        isEditMode = true;
+    }
+
+    if (url.searchParams.has("editMode") && url.searchParams.get("editMode") === "1") {
+        isEditMode = true;
+    }
+
+    if (isEditMode) documentClassNames.push("is-edit-mode");
+
+    let isDebugMode = false;
+
+    if (url.searchParams.has("debug") && url.searchParams.get("debug") === "1") {
+        isDebugMode = true;
+    }
+
+    if (isDebugMode) documentClassNames.push("is-debug-mode");
+
+    if (window.controllerId == "page" && !window.location.pathname.includes("/pl/cms/page")) {
+        documentClassNames.push("is-cms-page");
+    } else {
+        documentClassNames.push("is-platform-page");
+    }
+
+    const isHomePage =
+        window.location.pathname === "/teach/control/stream/index" ||
+        window.location.pathname === "/teach/control/stream" ||
+        window.location.pathname === "/teach/control";
+
+    const isTrainingPage = window.location.href.includes("/teach/control/stream/view");
+
+    const isLessonPage =
+        window.location.href.includes("/pl/teach/control/lesson/view") ||
+        window.location.href.includes("/pl/teach/control/lesson/webview");
+
+    const isPaymentPage = window.location.href.includes("/sales/shop/dealPay");
+
+    const isAuthPage = window.location.href.includes("/cms/system/login");
+
+    const isContactPage = window.location.href.includes("/cms/system/contact");
+
+    const isConversationPage = window.location.href.includes("/pl/talks/conversation");
+
+    const isNotificationsPage = window.location.href.includes("/pl/notifications/settings/my");
+
+    const isSchedulePage = window.location.href.includes("/pl/teach/control/schedule");
+
+    const isPurchasesPage = window.location.href.includes("/sales/control/userProduct/my");
+
+    if (isHomePage) documentClassNames.push("is-home-page");
+    if (isTrainingPage) documentClassNames.push("is-training-page");
+    if (isLessonPage) documentClassNames.push("is-lesson-page");
+    if (isPaymentPage) documentClassNames.push("is-payment-page");
+    if (isAuthPage) documentClassNames.push("is-auth-page");
+    if (isContactPage) documentClassNames.push("is-contact-page");
+    if (isConversationPage) documentClassNames.push("is-conversation-page");
+    if (isNotificationsPage) documentClassNames.push("is-notifications-page");
+    if (isSchedulePage) documentClassNames.push("is-schedule-page");
+    if (isPurchasesPage) documentClassNames.push("is-purchases-page");
+
+    document.documentElement.classList.add(...documentClassNames);
+
+    const $w = new Map();
+
+    $w.set("isStudent", isStudent);
+    $w.set("isAdmin", isAdmin);
+    $w.set("isTeacher", isTeacher);
+
+    $w.set("isEditMode", isEditMode);
+    $w.set("isDebugMode", isDebugMode);
+
+    $w.set("isHomePage", isHomePage);
+    $w.set("isTrainingPage", isTrainingPage);
+    $w.set("isLessonPage", isLessonPage);
+    $w.set("isPaymentPage", isPaymentPage);
+    $w.set("isAuthPage", isAuthPage);
+    $w.set("isContactPage", isContactPage);
+    $w.set("isConversationPage", isConversationPage);
+    $w.set("isNotificationsPage", isNotificationsPage);
+    $w.set("isSchedulePage", isSchedulePage);
+    $w.set("isPurchasesPage", isPurchasesPage);
+
+    window.$w = $w;
+})();
+/* ------------- 
+content start - Сбор меток из нулевого заказа
+------------- */
+
+document.addEventListener("DOMContentLoaded", function () {
+    async function fetchDealData(link) {
+        const res = await fetch(link);
+
+        if (!res.ok) {
+            console.error("fetchUserDeals error: fetch error");
+        }
+
+        const pageHTML = await res.text();
+        const domParser = new DOMParser();
+
+        const $page = $(domParser.parseFromString(pageHTML, "text/html"));
+
+        const dealCost = $page.find(".positions-table .summary-tr .cost").text().trim();
+
+        if (dealCost !== "0 руб.") return {};
+
+        const $dealMarksContainer = $page.find(".panel-heading:contains(Источник заказа)");
+        if (!$dealMarksContainer.length) return {};
+
+        const data = {};
+
+        $dealMarksContainer
+            .parent(".panel")
+            .find("table tbody tr")
+            .each(function () {
+                const $row = $(this);
+
+                const key = $row.find("td:first-child").text().trim();
+                const value = $row.find("td:last-child").text().trim();
+
+                if (key.includes("utm")) {
+                    data[key] = value;
+                }
+            });
+
+        return data;
+    }
+
+    async function fetchUserDealsLinks(id) {
+        const res = await fetch(`/user/control/user/update/id/${id}`);
+
+        if (!res.ok) {
+            console.error("fetchUserDeals error: fetch error");
+        }
+
+        const pageHTML = await res.text();
+        const domParser = new DOMParser();
+
+        const $page = $(domParser.parseFromString(pageHTML, "text/html"));
+
+        const $deals = $page.find("#userForm .deal-row");
+
+        if (!$deals.length) return [];
+
+        const dealLinks = [];
+
+        $deals.each(function () {
+            const $deal = $(this);
+
+            const dealLink = $(this.querySelector(":scope > div:first-child a")).attr("href");
+
+            dealLinks.push(dealLink);
+        });
+
+        return dealLinks;
+    }
+
+    function updateDealValueString(key, value) {
+        const $el = $('input[name="Deal[valueSetString]"]');
+        const data = JSON.parse($el.val());
+
+        data[key] = value;
+
+        $el.val(JSON.stringify(data));
+    }
+
+    function generateSaveUtmMarksButton() {
+        if ($('[js-selector="saveUtmMarks"]').length) {
+            $('[js-selector="saveUtmMarks"]').remove();
+        }
+
+        $("div.main-page-block > div > div.page-header > div.page-actions > button").after(`
+            <button class="btn btn-warning" js-selector="saveUtmMarks" disabled>Сохранить utm-метки</button>
+        `);
+
+        $('[js-selector="saveUtmMarks"]').on("click", function () {
+            $("div.main-page-block > div > div.page-header > div.page-actions > button").click();
+        });
+    }
+
+    async function main() {
+        const url = new URL(window.location.href);
+        if (!url.pathname.includes("/sales/control/deal/update/id")) return;
+
+        const currentDealLink = url.pathname;
+
+        const $uidLink = $(".panel-heading:contains(Клиент)").parent(".panel").find("a");
+        if (!$uidLink.length) return;
+
+        let uid = $uidLink.attr("href").match(/\d+/gm);
+        if (uid) {
+            uid = uid[0];
+        } else {
+            return;
+        }
+
+        const dealCreatorId = $(".panel-heading:contains(История)")
+            .parent(".panel")
+            .find(".panel-body .user-action-block")
+            .last()
+            .find(".user-profile-link")
+            .attr("data-user-id");
+
+        const dealPrice = Number($(".summary-tr .cost").text().trim().replaceAll(" ", "").replace("руб.", ""));
+
+        console.log({ uid });
+        console.log({ dealCreatorId });
+
+        console.log(uid === dealCreatorId);
+        console.log({ dealPrice });
+        console.log(dealPrice < 30000);
+        if (dealPrice < 30000 && uid === dealCreatorId) return;
+
+        generateSaveUtmMarksButton();
+
+        const $sourceField = $("#field-input-1340173");
+        const $mediumField = $("#field-input-1340174");
+        const $campaignField = $("#field-input-1340175");
+        const $contentField = $("#field-input-1340176");
+        const $termFieldField = $("#field-input-1340177");
+
+        /* Проверяем, имеют ли все поля значение false */
+        if (
+            $sourceField.val() !== "false" ||
+            $mediumField.val() !== "false" ||
+            $campaignField.val() !== "false" ||
+            $contentField.val() !== "false" ||
+            $termFieldField.val() !== "false"
+        ) {
+            return;
+        }
+
+        const dealLinks = await fetchUserDealsLinks(uid);
+
+        const currentDealLinkIndex = dealLinks.indexOf(currentDealLink);
+
+        const dealLinksBehindCurrentDeal = dealLinks.slice(currentDealLinkIndex + 1, dealLinks.length);
+
+        const dealsData = await Promise.all(dealLinksBehindCurrentDeal.map(fetchDealData));
+        const filteredDealsData = dealsData.filter((item) => Object.keys(item).length !== 0);
+
+        const [targetDealData] = filteredDealsData;
+
+        console.log({ targetDealData });
+
+        if (targetDealData.hasOwnProperty("utm_source")) {
+            $sourceField.val(targetDealData["utm_source"]);
+            updateDealValueString($sourceField.attr("id").split("-")[2], targetDealData["utm_source"]);
+        }
+
+        if (targetDealData.hasOwnProperty("utm_medium")) {
+            $mediumField.val(targetDealData["utm_medium"]);
+            updateDealValueString($mediumField.attr("id").split("-")[2], targetDealData["utm_medium"]);
+        }
+
+        if (targetDealData.hasOwnProperty("utm_campaign")) {
+            $campaignField.val(targetDealData["utm_campaign"]);
+            updateDealValueString($campaignField.attr("id").split("-")[2], targetDealData["utm_campaign"]);
+        }
+
+        if (targetDealData.hasOwnProperty("utm_content")) {
+            $contentField.val(targetDealData["utm_content"]);
+            updateDealValueString($contentField.attr("id").split("-")[2], targetDealData["utm_content"]);
+        }
+
+        if (targetDealData.hasOwnProperty("utm_term")) {
+            $termFieldField.val(targetDealData["utm_term"]);
+            updateDealValueString($termFieldField.attr("id").split("-")[2], targetDealData["utm_term"]);
+        }
+
+        $('[js-selector="saveUtmMarks"]').prop("disabled", false);
+
+        console.log("PROCESS collect data from null deal");
+    }
+
+    main();
+});
+/* ------------- 
+content finish - Сбор меток из нулевого заказа
+------------- */
+
+/* ------------- 
+content start - Сбор меток для скоринговых заказов
+------------- */
+
+document.addEventListener("DOMContentLoaded", function () {
+    async function fetchDealData(link) {
+        const res = await fetch(link);
+
+        if (!res.ok) {
+            console.error("fetchUserDeals error: fetch error");
+        }
+
+        const pageHTML = await res.text();
+        const domParser = new DOMParser();
+
+        const $page = $(domParser.parseFromString(pageHTML, "text/html"));
+
+        const dealName = $page.find(".deal-position-tr .name b a").text().trim();
+
+        const payload = {
+            name: dealName,
+        };
+
+        if (!dealName.includes("DDD")) return {};
+
+        const $dealMarksContainer = $page.find(".panel-heading:contains(Источник заказа)");
+        if (!$dealMarksContainer.length) return {};
+
+        $dealMarksContainer
+            .parent(".panel")
+            .find("table tbody tr")
+            .each(function () {
+                const $row = $(this);
+
+                const key = $row.find("td:first-child").text().trim();
+                const value = $row.find("td:last-child").text().trim();
+
+                if (key.includes("utm")) {
+                    payload[key] = value;
+                }
+            });
+
+        return payload;
+    }
+
+    async function fetchUserDealsLinks(id) {
+        const res = await fetch(`/user/control/user/update/id/${id}`);
+
+        if (!res.ok) {
+            console.error("fetchUserDeals error: fetch error");
+        }
+
+        const pageHTML = await res.text();
+        const domParser = new DOMParser();
+
+        const $page = $(domParser.parseFromString(pageHTML, "text/html"));
+
+        const $deals = $page.find("#userForm .deal-row");
+
+        if (!$deals.length) return [];
+
+        const dealLinks = [];
+
+        $deals.each(function () {
+            const $deal = $(this);
+
+            const dealLink = $(this.querySelector(":scope > div:first-child a")).attr("href");
+
+            dealLinks.push(dealLink);
+        });
+
+        return dealLinks;
+    }
+
+    function updateDealValueString(key, value) {
+        const $el = $('input[name="Deal[valueSetString]"]');
+        const data = JSON.parse($el.val());
+
+        data[key] = value;
+
+        $el.val(JSON.stringify(data));
+    }
+
+    function generateSaveUtmMarksButton() {
+        if ($('[js-selector="saveUtmMarks"]').length) {
+            $('[js-selector="saveUtmMarks"]').remove();
+        }
+
+        $("div.main-page-block > div > div.page-header > div.page-actions > button").after(`
+            <button class="btn btn-warning" js-selector="saveUtmMarks" disabled>Сохранить utm-метки</button>
+        `);
+
+        $('[js-selector="saveUtmMarks"]').on("click", function () {
+            $("div.main-page-block > div > div.page-header > div.page-actions > button").click();
+        });
+    }
+
+    function extractScoringName(dealName) {
+        const findScoringNameRegExp = new RegExp("Анкета - (.+):\\sCCC", "g");
+        const [_, scoringName] = findScoringNameRegExp.exec(dealName);
+
+        return scoringName;
+    }
+
+    async function main() {
+        const url = new URL(window.location.href);
+        if (!url.pathname.includes("/sales/control/deal/update/id")) return;
+
+        const currentDealLink = url.pathname.replace("/part/main", "");
+
+        const $uidLink = $(".panel-heading:contains(Клиент)").parent(".panel").find("a");
+        if (!$uidLink.length) return;
+
+        let uid = $uidLink.attr("href").match(/\d+/gm);
+        if (uid) {
+            uid = uid[0];
+        } else {
+            return;
+        }
+
+        const dealName = $(".deal-position-tr .name b a").text().trim();
+        if (!dealName.includes("Анкета") && !dealName.includes("CCC - СКР")) return;
+
+        generateSaveUtmMarksButton();
+
+        const scoringName = extractScoringName(dealName);
+
+        const $sourceField = $("#field-input-1340173");
+        const $mediumField = $("#field-input-1340174");
+        const $campaignField = $("#field-input-1340175");
+        const $contentField = $("#field-input-1340176");
+        const $termFieldField = $("#field-input-1340177");
+
+        /* Проверяем, имеют ли все поля значение false */
+        if (
+            $sourceField.val() !== "false" ||
+            $mediumField.val() !== "false" ||
+            $campaignField.val() !== "false" ||
+            $contentField.val() !== "false" ||
+            $termFieldField.val() !== "false"
+        ) {
+            return;
+        }
+
+        const dealLinks = await fetchUserDealsLinks(uid);
+
+        const currentDealLinkIndex = dealLinks.indexOf(currentDealLink);
+
+        const dealLinksBehindCurrentDeal = dealLinks.slice(currentDealLinkIndex + 1, dealLinks.length);
+
+        const dealList = await Promise.all(dealLinksBehindCurrentDeal.map(fetchDealData));
+
+        const targetDealData = dealList.find((deal) => {
+            if (deal.name && deal.name.includes(scoringName)) {
+                return true;
+            }
+            return false;
+        });
+
+        console.log({ targetDealData });
+
+        if (targetDealData.hasOwnProperty("utm_source")) {
+            $sourceField.val(targetDealData["utm_source"]);
+            updateDealValueString($sourceField.attr("id").split("-")[2], targetDealData["utm_source"]);
+        }
+
+        if (targetDealData.hasOwnProperty("utm_medium")) {
+            $mediumField.val(targetDealData["utm_medium"]);
+            updateDealValueString($mediumField.attr("id").split("-")[2], targetDealData["utm_medium"]);
+        }
+
+        if (targetDealData.hasOwnProperty("utm_campaign")) {
+            $campaignField.val(targetDealData["utm_campaign"]);
+            updateDealValueString($campaignField.attr("id").split("-")[2], targetDealData["utm_campaign"]);
+        }
+
+        if (targetDealData.hasOwnProperty("utm_content")) {
+            $contentField.val(targetDealData["utm_content"]);
+            updateDealValueString($contentField.attr("id").split("-")[2], targetDealData["utm_content"]);
+        }
+
+        if (targetDealData.hasOwnProperty("utm_term")) {
+            $termFieldField.val(targetDealData["utm_term"]);
+            updateDealValueString($termFieldField.attr("id").split("-")[2], targetDealData["utm_term"]);
+        }
+
+        $('[js-selector="saveUtmMarks"]').prop("disabled", false);
+
+        console.log("PROCESS collect data for scoring deal");
+    }
+
+    main();
+});
+/* ------------- 
+content finish - Сбор меток для скоринговых заказов
+------------- */
+
+/* ------------- 
+content start - Скрытие заказов по статусам из Моих покупок
+------------- */
+
+(() => {
+    document.addEventListener("DOMContentLoaded", function () {
+        main();
+    });
+
+    async function main() {
+    	if (!window.location.href.includes("/sales/control/userProduct/my")) return
+    	
+    	const {isAdmin, isManager, isTeacher} = window.userInfo
+    	if (isAdmin || isManager || isTeacher) return
+    	
+    	const targetDealStatuses = ["Не подтвержден", "Отложен"]
+    	
+        const $incompleteOrdersTable = $('h3:contains(Незавершенные заказы)').next('table.table')
+        $incompleteOrdersTable.find('tbody tr').each(function() {
+        	const $tr = $(this)
+        	const dealStatus = $tr.find('td:nth-child(3) .deal-status').text().trim()
+        	
+        	if (targetDealStatuses.includes(dealStatus)) {
+        		$tr.hide()
+        	}
+        })
+    }
+})();
+/* ------------- 
+content finish - Скрытие заказов по статусам из Моих покупок
+------------- */
+
+/* ------------- 
+content start - Добавление пункта магазина в меню
+------------- */
+
+(() => {
+	main()
+
+    async function main() {
+    	const waitLeftbarInterval = setInterval(() => {
+    		if ($('.gc-account-leftbar').length) {
+    			clearInterval(waitLeftbarInterval)
+    			
+    			$('.gc-account-user-menu .menu-item-notifications_button_small').after($(`
+	    			<li class="menu-item menu-item-shop">
+			    		<a href="https://result.school/products?utm_source=products&utm_medium=other&utm_campaign=gc&utm_content=menu&utm_term=product" target="_blank" data-title="Магазин">
+				    		<img class="menu-item-icon" src="/public/img/service/cms.png">
+				    		<span class="notify-count" style="display: none;"></span>
+				    		<div class="submenu-arrow" style="display: none;"></div>
+			    		</a>
+			        </li>
+		    	`))
+    		}
+    	}, 100)
+    }
+})();
+/* ------------- 
+content finish - Добавление пункта магазина в меню
+------------- */
+
+/* ------------- 
+content start - Баннеры (модуль/урок)
+------------- */
+
+(() => {
+    document.addEventListener("DOMContentLoaded", function (evt) {
+        if ($w.get("isEditMode")) return;
+        if (!$w.get("isLessonPage")) return;
+
+        $(".w-banner-section").each(function () {
+            const $bannerSection = $(this);
+
+            $bannerSection.find(".w-banner-expand").on("click", function () {
+                $(this).toggleClass("is-active");
+                $bannerSection.find(".my-container").toggleClass("is-opened");
+            });
+        });
+
+        const waitPeakInterval = setInterval(() => {
+            if ($("#peak").length) {
+                clearInterval(waitPeakInterval);
+
+                $(".w-banner-section").each(function () {
+                    const $banner = $(this);
+
+                    $(".banners-peak").append($banner);
+                });
+            }
+        }, 100);
+    });
+
+    document.addEventListener("DOMContentLoaded", function (evt) {
+        if ($w.get("isEditMode")) return;
+        if (!$w.get("isTrainingPage")) return;
+        
+        console.log("Search banners list...")
+
+        $(".w-banner").each(function () {
+            const $banner = $(this);
+            
+            console.log($banner)
+
+            $banner.find(".w-banner-expand").on("click", function () {
+                $(this).toggleClass("is-active");
+                $banner.toggleClass("is-opened");
+            });
+        });
+    });
+})();
+
+/* ------------- 
+content finish - Баннеры (модуль/урок)
+------------- */
+
+/* ------------- 
+content start - Содержание (урок)
+------------- */
+
+function letsGo(url) {
+    window.open(url, "_blank");
+}
+
+(() => {
+    document.addEventListener("DOMContentLoaded", function () {
+        main();
+    });
+
+    async function main() {
+        if ($w.get("isEditMode")) return;
+        if (!$w.get("isLessonPage")) return;
+
+        const url = new URL(window.location.href);
+        const lessonID = url.searchParams.get("id");
+
+        $("body").prepend(`
+            <aside class="toc" id="toc">
+                <div class="toc__content">
+                    <div class="toc__side">
+                        <div class="toc__header">
+                            <h2 class="toc__title">Содержание</h2>
+                            <button type="button" class="toc__close" id="toc-close">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M18 18L6 6M18 6L6 18"
+                                        stroke="#ACACAC"
+                                        stroke-width="1.7"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="toc__breadcrumbs breadcrumbs-toc">
+                            <ul class="breadcrumbs-toc__list"></ul>
+                        </div>
+                        <div class="toc__banners banners-toc">
+                            <div class="banners-toc__list"></div>
+                        </div>
+                    </div>
+                    <div class="toc__main">
+                        <nav class="toc__navigation navigation-toc">
+                            <h3 class="navigation-toc__title"></h3>
+                            <ul class="navigation-toc__list"></ul>
+                        </nav>
+                    </div>
+                </div>
+            </aside>        
+        `);
+
+        $("body").append(`<div class="toc-cover" id="toc-cover"></div>`);
+
+        const moduleLink = $(".page-header h1 a").attr("href");
+        const moduleName = $(".page-header h1 a").text().trim();
+
+        const toc = document.querySelector("#toc");
+        const tocClose = document.querySelector("#toc-close");
+        const tocCover = document.querySelector("#toc-cover");
+
+        toc.querySelector(".navigation-toc__title").textContent = moduleName;
+
+        const breadcrumbs = extractBreadcrumbs();
+
+        try {
+            const lessonsData = await fetchLessonsData(moduleLink);
+
+            for (const [index, lessonData] of lessonsData.entries()) {
+                const listItem = document.createElement("li");
+                listItem.classList.add("navigation-toc__item");
+
+                const link = document.createElement("a");
+                link.classList.add("navigation-toc__link");
+                link.setAttribute("href", lessonData.link);
+                link.textContent = `${index}. ${lessonData.name}`;
+
+                if (lessonData.link.includes(lessonID)) link.classList.add("navigation-toc__link_current");
+
+                listItem.insertAdjacentElement("afterbegin", link);
+
+                toc.querySelector(".navigation-toc__list").insertAdjacentElement("beforeend", listItem);
+            }
+
+            for (const breadcrumb of breadcrumbs) {
+                toc.querySelector(".breadcrumbs-toc__list").insertAdjacentHTML(
+                    "beforeend",
+                    `
+                        <li class="breadcrumbs-toc__item">
+                            <a href="${breadcrumb.link}" class="breadcrumbs-toc__link">${breadcrumb.name}</a>
+                        </li>
+                    `
+                );
+            }
+        } catch (err) {
+            console.log(err);
+        }
+
+        try {
+            const trainingLink = breadcrumbs[1].link;
+            const banners = await fetchBanners(trainingLink);
+
+            for (const banner of banners) {
+                const $bannerTocItem = $(banner).wrap('<div class="banner-toc__item" />');
+                $(".banners-toc__list").append($bannerTocItem);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+
+        tocCover.addEventListener("click", function (evt) {
+            toc.classList.remove("is-open");
+            this.classList.remove("is-visible");
+            document.documentElement.classList.remove("w-is-locked");
+        });
+
+        tocClose.addEventListener("click", function (evt) {
+            toc.classList.remove("is-open");
+            tocCover.classList.remove("is-visible");
+            document.documentElement.classList.remove("w-is-locked");
+        });
+
+        const waitPeakInterval = setInterval(() => {
+            if ($("#peak").length) {
+                clearInterval(waitPeakInterval);
+
+                const tocTriggerButton = document.createElement("button");
+                tocTriggerButton.classList.add("toc-trigger");
+                tocTriggerButton.setAttribute("id", "toc-trigger");
+                tocTriggerButton.style.opacity = 0;
+
+                tocTriggerButton.addEventListener("click", function (evt) {
+                    toc.classList.add("is-open");
+                    tocCover.classList.add("is-visible");
+                    document.documentElement.classList.add("w-is-locked");
+                });
+
+                tocTriggerButton.insertAdjacentHTML(
+                    "afterbegin",
+                    `
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 19.5833V7.02218C5 5.9643 5 5.43543 5.20588 5.03137C5.38697 4.67595 5.67572 4.38697 6.03114 4.20588C6.4352 4 6.96453 4 8.02241 4H16.7113C17.2402 4 17.5049 4 17.7069 4.10294C17.8846 4.19349 18.0284 4.33798 18.1189 4.51569C18.2219 4.71771 18.2222 4.98215 18.2222 5.51109V16.6555C18.2222 17.1845 18.2219 17.449 18.1189 17.651C18.0284 17.8287 17.8846 17.9732 17.7069 18.0637C17.5049 18.1667 17.24 18.1667 16.7111 18.1667H7.125C5.95139 18.1667 5 19.1181 5 20.2917C5 20.6829 5.31713 21 5.70833 21H15.7667C16.2956 21 16.5604 21 16.7625 20.897C16.9402 20.8065 17.0839 20.6621 17.1745 20.4843C17.2774 20.2823 17.2778 20.0178 17.2778 19.4889V18.1667"
+                                stroke="currentColor"
+                                stroke-opacity="0.9"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path d="M9 8L15 8" stroke="currentColor" stroke-opacity="0.9" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                        Содержание
+                    `
+                );
+
+                $('#peak [jsname="peakActions"]').append(tocTriggerButton);
+
+                setTimeout(() => {
+                    tocTriggerButton.style.opacity = 1;
+                }, 250);
+            }
+        }, 100);
+    }
+
+    async function fetchLessonsData(moduleLink) {
+        const res = await fetch(moduleLink);
+
+        if (!res.ok) {
+            throw new Error("Ошибка получения данных по урокам модуля");
+        }
+
+        const pageHTML = await res.text();
+        const domParser = new DOMParser();
+
+        const $page = $(domParser.parseFromString(pageHTML, "text/html"));
+
+        const $lessonList = $page.find(".lesson-list");
+
+        const lessonsData = [];
+
+        $lessonList.find("li:not(.divider)").each(function () {
+            const $lesson = $(this);
+
+            const lessonLink = $lesson.find("a").attr("href");
+            const lessonName = $lesson.find(".title").text().replace("просмотрено", "").trim();
+
+            lessonsData.push({
+                link: lessonLink,
+                name: lessonName,
+            });
+        });
+
+        return lessonsData;
+    }
+
+    async function fetchBanners(moduleLink) {
+        const res = await fetch(moduleLink);
+
+        if (!res.ok) {
+            throw new Error("Ошибка получения баннеров из корневого тренинга");
+        }
+
+        const pageHTML = await res.text();
+        const domParser = new DOMParser();
+
+        const $page = $(domParser.parseFromString(pageHTML, "text/html"));
+
+        const $banners = $page.find(".lesson-banners-box .banner-card");
+
+        return Array.from($banners);
+    }
+
+    function extractBreadcrumbs() {
+        const breadcrumbs = [];
+
+        const moduleLink = $(".page-header h1 a").attr("href");
+        const moduleName = $(".page-header h1 a").text().trim();
+
+        $(".breadcrumb li").each(function () {
+            const breadcrumbLink = $(this).find("a").attr("href");
+            const breadcrumbName = $(this).find("a").text().trim();
+
+            if (breadcrumbLink !== moduleLink) {
+                breadcrumbs.push({
+                    link: breadcrumbLink,
+                    name: breadcrumbName,
+                });
+            }
+        });
+
+        breadcrumbs.push({
+            link: moduleLink,
+            name: moduleName,
+        });
+
+        return breadcrumbs;
+    }
+})();
+
+/* ------------- 
+content finish - Содержание (урок)
+------------- */
+
+/* ------------- 
+content start - Редизайн шапки и цветов
+------------- */
+
+(() => {
+    document.addEventListener("DOMContentLoaded", function (evt) {
+        if ($('.breadcrumb a[href="/teach/control/stream/view/id/560546100"]').length) {
+            $(".lesson-navigation").css("visibility", "hidden");
+        }
+
+        if ($(".lesson-description-value").text().trim().length === 0) {
+            $(".lesson-description-value").remove();
+        }
+    });
+})();
+/* ------------- 
+content finish - Редизайн шапки и цветов
+------------- */
+
+/* ------------- 
+content start - Шапка урока
+------------- */
+
+(() => {
+    document.addEventListener("DOMContentLoaded", function () {
+        main();
+    });
+
+    async function main() {
+        if ($w.get("isEditMode")) return;
+        if (!$w.get("isLessonPage")) return;
+
+        $(".gc-main-content").prepend(`
+            <header id="peak" class="peak">
+                <div class="peak__container">
+                    <div class="peak__banners banners-peak"></div>
+                    <nav class="peak__breadcrumbs breadcrumbs-peak">
+                        <ul class="breadcrumbs-peak__list" jsname="peakBreadcrumbsList">
+                        </ul>
+                    </nav>
+                    <div class="peak__actions" jsname="peakActions"></div>
+                </div>
+            </header>
+        `);
+
+        const breadcrumbs = extractBreadcrumbs();
+
+        for (const breadcrumb of breadcrumbs) {
+            $('[jsname="peakBreadcrumbsList"]').append(`
+                <li class="breadcrumbs-peak__item">
+                    <a href="${breadcrumb.link}" class="breadcrumbs-peak__link">${breadcrumb.name}</a>
+                </li>
+            `);
+        }
+    }
+
+    function extractBreadcrumbs() {
+        const breadcrumbs = [];
+
+        const moduleLink = $(".page-header h1 a").attr("href");
+        const moduleName = $(".page-header h1 a").text().trim();
+
+        $(".breadcrumb li").each(function () {
+            const breadcrumbLink = $(this).find("a").attr("href");
+            const breadcrumbName = $(this).find("a").text().trim();
+
+            if (breadcrumbLink !== moduleLink) {
+                breadcrumbs.push({
+                    link: breadcrumbLink,
+                    name: breadcrumbName,
+                });
+            }
+        });
+
+        breadcrumbs.push({
+            link: moduleLink,
+            name: moduleName,
+        });
+
+        return breadcrumbs;
+    }
+})();
+/* ------------- 
+content finish - Шапка урока
+------------- */

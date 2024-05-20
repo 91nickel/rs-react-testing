@@ -1,0 +1,34 @@
+if (window.location.href.indexOf('/pl/talks/conversation') > -1) {
+	$('head').append(`
+		<style>
+			#carrotquest-messenger-collapsed-container,
+            .carrot-messenger-frame-container {
+                display: none !important;
+            }
+		</style>	
+	`)
+}
+
+$(function(){
+	if(window.location.href.indexOf('/pl/sales/deal') > -1 || window.location.href.indexOf('/pl/logic/funnel') > -1 || window.location.href.indexOf('/pl/user/user') > -1 || window.location.href.indexOf('/pl/tasks/mission') > -1 || window.location.href.indexOf('/notifications/control/mailings/update/id') > -1 || window.location.href.indexOf('/pl/logic/operation/prepare') > -1) {
+			setInterval(function (){
+				$('option[value="new"]').html('Получен заказ');
+				$('option[value="in_work"]').html('Взят менеджером');
+				$('option[value="not_confirmed"]').html('Переведен в платный');
+				$('option[value="false"]').html('Удален');
+				$('option[value="payment_waiting"]').html('Выставлен счет');
+				$('option[value="part_payed"]').html('Частично оплачено');
+				$('option[value="waiting_for_return"]').html('Оформлен возврат');
+			}, 7000);
+	}
+	
+	 if(window.location.href.indexOf('/sales/control/deal/update/id') > -1) {
+	 	$('option[value="new"]').html('Получен заказ');
+				$('option[value="in_work"]').html('Взят менеджером');
+				$('option[value="not_confirmed"]').html('Переведен в платный');
+				$('option[value="false"]').html('Удален');
+				$('option[value="payment_waiting"]').html('Выставлен счет');
+				$('option[value="part_payed"]').html('Частично оплачено');
+				$('option[value="waiting_for_return"]').html('Оформлен возврат');
+	 }
+})
