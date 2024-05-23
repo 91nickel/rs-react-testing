@@ -1,0 +1,14 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.root-container {
+    padding: 12px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 12px;
+    align-items: flex-start;
+
+    width: 200px;
+    overflow: hidden;
+}
