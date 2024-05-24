@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`отображение списка задач 1`] = `
+exports[`Список задач не больше 10 невыполненных задач 1`] = `
+"Snapshot Diff:
+Compared values have no visual difference."
+`;
+
+exports[`Список задач не больше 10 невыполненных задач в списке 1`] = `
+"Snapshot Diff:
+Compared values have no visual difference."
+`;
+
+exports[`Список задач отображение списка задач 1`] = `
 "Snapshot Diff:
 - First value
 + Second value

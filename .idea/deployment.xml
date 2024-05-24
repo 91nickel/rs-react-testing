@@ -9,28 +9,28 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="foroffice-sites">
+      <paths name="gitlab@test.foroffice.ru">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="foroffice@test.foroffice.ru">
+      <paths name="nikita@84.201.165.106">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="terra-led">
+      <paths name="terra-led.kz">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="terra-led-old">
+      <paths name="terra-led.ru">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
