@@ -2,28 +2,39 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from './configureStore'
 
+export const ACTIVE_TASKS_LIMIT = 10
+
 export interface taskListState {
     list: Task[];
     notification: string;
     showActiveOnly: boolean;
 }
 
-const initialState: taskListState = {
+export const initialState: taskListState = {
     list: [],
     notification: '',
     showActiveOnly: false,
+}
+
+export function createTaskCloseMessage (header: string) {
+    return `Задача "${header}" завершена`
 }
 
 export const taskListSlice = createSlice({
     name: 'taskList',
     initialState,
     reducers: {
+        setTasks: (state, action: PayloadAction<Task[]>) => {
+            state.list = action.payload
+        },
         addTask: (state, action: PayloadAction<Task['header']>) => {
-            state.list.push({
-                id: crypto.randomUUID(),
-                header: action.payload,
-                done: false,
-            })
+            if (state.list.filter(task => !task.done).length < ACTIVE_TASKS_LIMIT) {
+                state.list.push({
+                    id: crypto.randomUUID(),
+                    header: action.payload,
+                    done: false,
+                })
+            }
         },
         completeTask: (state, action: PayloadAction<Task['id']>) => {
             const task = state.list.find((x) => x.id === action.payload)
@@ -39,7 +50,7 @@ export const taskListSlice = createSlice({
                 task.done = !task.done
 
                 if (task.done) {
-                    state.notification = `Задача "${task.header}" завершена`
+                    state.notification = createTaskCloseMessage(task.header)
                 }
             }
         },
@@ -63,6 +74,7 @@ export const {
     completeTask,
     deleteTask,
     toggleTask,
+    setTasks,
     setNotification,
     clearNotification,
     toggleActiveOnly,
@@ -71,8 +83,13 @@ export const {
 export default taskListSlice.reducer
 
 export const tasksSelector = (state: RootState) => state.taskList.showActiveOnly
-    ? state.taskList.list.filter(item => !item.done)
+    ? state.taskList.list
+        .filter(item => !item.done)
+        .slice(0, ACTIVE_TASKS_LIMIT)
     : state.taskList.list
+        .filter(item => !item.done)
+        .slice(0, ACTIVE_TASKS_LIMIT)
+        .concat(state.taskList.list.filter(item => item.done))
 
 export const fullCount = (state: RootState) => state.taskList.list.length
 

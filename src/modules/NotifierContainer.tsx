@@ -7,7 +7,6 @@ export const NotifierContainer = () => {
   const dispatch = useDispatch();
   const notification = useSelector(getNotification);
 
-
   const handleNotifierClose = () => {
     dispatch(clearNotification());
   };
